@@ -1,0 +1,216 @@
+.contact {
+  position: relative;
+  min-height: 112vh;
+  min-height: 112svh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  color: var(--bone);
+  background: var(--void);
+  padding: calc(var(--section-y) * 0.8) var(--pad-x) clamp(20px, 2.4vw, 36px);
+}
+
+/* with WebGL the locked core shows through; a scrim keeps the copy legible */
+.contact[data-webgl] {
+  background:
+    radial-gradient(80% 70% at 0% 55%, rgba(11, 12, 15, 0.85), rgba(11, 12, 15, 0) 70%),
+    linear-gradient(0deg, rgba(11, 12, 15, 0.9) 0%, rgba(11, 12, 15, 0) 30%);
+}
+
+.main {
+  align-self: center;
+  display: grid;
+  gap: clamp(20px, 2.4vw, 30px);
+  max-width: min(780px, 62vw);
+}
+
+.title {
+  font-size: clamp(2.6rem, 6.4vw, 7.4rem);
+}
+
+.lead {
+  max-width: 44ch;
+  color: var(--mute);
+  font-size: var(--fs-lead);
+  line-height: 1.4;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: clamp(24px, 3vw, 44px);
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.cta {
+  position: relative;
+  width: clamp(140px, 13vw, 184px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--ember);
+  color: var(--void);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  isolation: isolate;
+  box-shadow: 0 20px 60px -20px rgba(255, 107, 44, 0.7);
+  transition: transform 0.8s var(--ease-spring);
+}
+.cta:hover {
+  transform: scale(1.06);
+}
+.ctaFill {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--bone);
+  transform: translateY(101%);
+  transition: transform 0.7s var(--ease-out);
+  z-index: -1;
+}
+.cta:hover .ctaFill,
+.cta:focus-visible .ctaFill {
+  transform: none;
+}
+.ctaText {
+  position: relative;
+  display: grid;
+  height: 1.3em;
+  overflow: hidden;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-align: center;
+}
+.ctaText span {
+  display: block;
+  line-height: 1.3em;
+  transition: transform 0.7s var(--ease-out);
+}
+.cta:hover .ctaText span,
+.cta:focus-visible .ctaText span {
+  transform: translateY(-100%);
+}
+
+.mailBox {
+  display: grid;
+  gap: 6px;
+  justify-items: start;
+}
+.mail {
+  font-size: var(--fs-lead);
+  user-select: all;
+}
+.copy {
+  font-size: var(--fs-small);
+  color: var(--mute);
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+.copy:hover {
+  color: var(--bone);
+  border-color: var(--bone);
+}
+
+.footer {
+  margin-top: clamp(80px, 10vw, 140px);
+  display: grid;
+  grid-template-columns: auto minmax(0, 48ch) auto;
+  justify-content: space-between;
+  align-items: end;
+  gap: 28px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  font-size: var(--fs-small);
+  color: var(--mute);
+}
+.footCol {
+  display: grid;
+  gap: 10px;
+}
+
+.sessions {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 6px 26px;
+  font-variant-numeric: tabular-nums;
+}
+.sessions li {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+}
+.sessions li > span:first-child {
+  color: var(--bone);
+  min-width: 5.2em;
+}
+.sessions :global(.session-state) {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: var(--fs-micro);
+  color: var(--faint);
+}
+.sessions :global(.session-state)::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--line-strong);
+}
+.sessions li[data-open] :global(.session-state) {
+  color: var(--pass);
+}
+.sessions li[data-open] :global(.session-state)::before {
+  background: var(--pass);
+  box-shadow: 0 0 6px var(--pass);
+}
+
+.disclaimer {
+  line-height: 1.55;
+  color: var(--faint);
+}
+
+.legal {
+  display: flex;
+  gap: 22px;
+  justify-content: flex-end;
+}
+.link {
+  font-size: inherit;
+  color: var(--bone);
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 100% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 1023px) {
+  .main {
+    max-width: none;
+  }
+  .footer {
+    grid-template-columns: 1fr 1fr;
+  }
+  .disclaimer {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+}
+
+@media (max-width: 767px) {
+  .contact[data-webgl] {
+    background: linear-gradient(0deg, rgba(11, 12, 15, 0.92) 40%, rgba(11, 12, 15, 0.1) 75%);
+  }
+  .main {
+    align-self: end;
+  }
+  .footer {
+    grid-template-columns: 1fr;
+  }
+  .legal {
+    justify-content: space-between;
+  }
+}

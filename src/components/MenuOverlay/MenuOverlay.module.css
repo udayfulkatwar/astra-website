@@ -1,0 +1,59 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 95;
+  background: rgba(11, 12, 15, 0.97);
+  color: var(--bone);
+  display: grid;
+  grid-template-rows: 1fr auto;
+  padding: clamp(110px, 16vh, 160px) var(--pad-x) var(--pad-x);
+}
+
+.nav {
+  align-self: center;
+}
+
+.mask {
+  overflow: hidden;
+  padding-bottom: 0.06em;
+}
+
+.big {
+  display: inline-block;
+  font-size: clamp(2.8rem, 7.5vw, 7.5rem);
+  font-stretch: 118%;
+  font-weight: 460;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  transition: color 0.4s ease, transform 0.6s var(--ease-out);
+}
+.big:hover,
+.big:focus-visible {
+  color: var(--ember);
+}
+
+.foot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: var(--fs-small);
+  color: var(--mute);
+  border-top: 1px solid var(--line-strong);
+  padding-top: 18px;
+}
+
+.mail {
+  color: var(--bone);
+}
+
+.times {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  font-variant-numeric: tabular-nums;
+}
+.times li {
+  display: flex;
+  gap: 6px;
+}

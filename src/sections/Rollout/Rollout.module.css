@@ -1,0 +1,142 @@
+.rollout {
+  --p: 0;
+  position: relative;
+  color: var(--bone);
+  padding: var(--section-y) var(--pad-x);
+}
+
+.head {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  align-items: end;
+  margin-bottom: clamp(56px, 7vw, 110px);
+}
+
+.title {
+  grid-column: 1 / 8;
+  font-size: var(--fs-h2);
+}
+
+.intro {
+  grid-column: 8 / -1;
+  max-width: 38ch;
+  color: var(--mute);
+}
+
+.track {
+  position: relative;
+}
+
+.line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 5px;
+  height: 1px;
+  background: var(--line-strong);
+}
+.fill {
+  position: absolute;
+  inset: 0;
+  background: var(--ember);
+  transform-origin: left;
+  transform: scaleX(var(--p));
+}
+
+.stages {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  column-gap: var(--gutter);
+}
+
+.stage {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  padding-top: 32px;
+}
+
+.node {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--void);
+  box-shadow: inset 0 0 0 1.5px var(--mute);
+}
+.node::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--ember);
+  transform: scale(var(--lit, 0));
+}
+
+.idx {
+  font-family: var(--mono);
+  font-size: var(--fs-micro);
+  color: var(--mute);
+  font-variant-numeric: tabular-nums;
+}
+
+.name {
+  font-size: clamp(1.25rem, 1.8vw, 1.9rem);
+  font-stretch: 112%;
+  font-weight: 520;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.text {
+  font-size: var(--fs-small);
+  color: var(--mute);
+  max-width: 26ch;
+}
+
+.badge {
+  justify-self: start;
+  margin-top: 4px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: var(--ember-soft);
+  color: var(--ember);
+  font-family: var(--mono);
+  font-size: var(--fs-micro);
+}
+
+@media (max-width: 1023px) {
+  .title,
+  .intro {
+    grid-column: 1 / -1;
+  }
+  .intro {
+    margin-top: 18px;
+  }
+  .line {
+    left: 5px;
+    right: auto;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    height: auto;
+  }
+  .fill {
+    transform-origin: top;
+    transform: scaleY(var(--p));
+  }
+  .stages {
+    grid-template-columns: 1fr;
+    row-gap: 40px;
+  }
+  .stage {
+    padding: 0 0 0 36px;
+  }
+  .node {
+    top: 4px;
+  }
+}

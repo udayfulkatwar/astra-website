@@ -1,0 +1,213 @@
+.board {
+  padding: 0;
+  overflow: hidden;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line);
+  color: var(--mute);
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  font-family: var(--mono);
+  font-size: var(--fs-micro);
+}
+.legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.legend li::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--k);
+}
+
+/* dotted automation canvas */
+.canvas {
+  position: relative;
+  margin: clamp(10px, 1.5vw, 22px);
+  border-radius: 10px;
+  background-color: rgba(10, 11, 14, 0.5);
+  background-image: radial-gradient(rgba(232, 226, 216, 0.11) 1px, transparent 1.2px);
+  background-size: 22px 22px;
+}
+
+.edges {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.edge {
+  fill: none;
+  stroke: var(--k);
+  stroke-opacity: 0.22;
+  stroke-width: 1.2;
+  transition: stroke-opacity 0.4s ease;
+}
+.edge[data-lit] {
+  stroke-opacity: 0.8;
+}
+
+.packet {
+  fill: var(--k);
+  opacity: 0.55;
+  filter: drop-shadow(0 0 4px var(--k));
+  transition: opacity 0.4s ease;
+}
+.packet[data-lit] {
+  opacity: 1;
+}
+
+.node {
+  position: absolute;
+  width: 16.5%;
+  min-width: 132px;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--panel-solid);
+  border: 1px solid var(--line-strong);
+  text-align: left;
+  box-shadow: 0 12px 30px -16px rgba(0, 0, 0, 0.9);
+  transition:
+    border-color 0.35s ease,
+    opacity 0.35s ease,
+    transform 0.5s var(--ease-spring),
+    box-shadow 0.4s ease;
+}
+.node:hover,
+.node:focus-visible {
+  transform: translate(-50%, -50%) scale(1.04);
+}
+.node[data-active] {
+  border-color: var(--k);
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--k) 18%, transparent),
+    0 16px 40px -18px color-mix(in srgb, var(--k) 70%, transparent);
+}
+.node[data-dim] {
+  opacity: 0.42;
+}
+
+.icon {
+  flex: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  background: color-mix(in srgb, var(--k) 14%, transparent);
+  color: var(--k);
+}
+.icon svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.nodeText {
+  display: grid;
+  min-width: 0;
+}
+.nodeName {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--bone);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.nodeSub {
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  line-height: 1.35;
+  color: var(--faint);
+}
+
+.inspector {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+  gap: var(--gutter);
+  padding: 20px clamp(16px, 2vw, 26px) 24px;
+  border-top: 1px solid var(--line);
+}
+.inspTitle {
+  display: grid;
+  gap: 10px;
+  align-content: start;
+}
+.inspName {
+  font-size: var(--fs-h3);
+  font-stretch: 112%;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+.inspGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--gutter);
+}
+.inspGrid dt {
+  color: var(--faint);
+  margin-bottom: 6px;
+}
+.inspGrid dd {
+  color: var(--mute);
+  max-width: 44ch;
+}
+
+/* narrow screens: the canvas becomes an ordered list of steps */
+@media (max-width: 860px) {
+  .canvas {
+    aspect-ratio: auto !important;
+    display: grid;
+    gap: 8px;
+    padding: 12px;
+    background-image: none;
+  }
+  .edges {
+    display: none;
+  }
+  .node {
+    position: relative;
+    left: auto !important;
+    top: auto !important;
+    width: 100%;
+    transform: none;
+  }
+  .node:hover,
+  .node:focus-visible {
+    transform: none;
+  }
+  .node[data-dim] {
+    opacity: 1;
+  }
+  .inspector,
+  .inspGrid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,38 @@
+.fallback {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(60% 60% at 70% 50%, #15141a 0%, var(--void) 70%);
+  pointer-events: none;
+}
+.core {
+  position: absolute;
+  right: 12vw;
+  top: 50%;
+  width: min(44vw, 520px);
+  aspect-ratio: 1;
+  transform: translateY(-50%);
+}
+.core span {
+  position: absolute;
+  inset: calc(var(--i) * 5.2%);
+  border-radius: 50%;
+  border: 1px solid rgba(232, 226, 216, 0.22);
+  transform: rotateX(calc(var(--i) * 19deg)) rotateY(calc(var(--i) * 31deg));
+}
+.core b {
+  position: absolute;
+  inset: 44%;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffd2b8 0%, var(--ember) 45%, rgba(255, 107, 44, 0) 72%);
+  box-shadow: 0 0 80px 30px rgba(255, 107, 44, 0.35);
+}
+@media (max-width: 767px), (max-aspect-ratio: 9/10) {
+  .core {
+    right: 50%;
+    top: auto;
+    bottom: 8vh;
+    width: 80vw;
+    transform: translateX(50%);
+  }
+}

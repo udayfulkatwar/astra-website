@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>ASTRA — Autonomous Strategic Trading &amp; Risk Agent</title>
+    <meta name="description" content="ASTRA is an AI-orchestrated operating system for prop-firm trading. Nine deterministic gates stand between every signal and every order." />
+    <meta name="theme-color" content="#0B0C0F" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <style>
+      /* paint the ground and the curtain before JS arrives — no flash */
+      html, body { background: #0b0c0f; margin: 0; }
+      #boot { position: fixed; inset: 0; background: #0b0c0f; z-index: 119; }
+    </style>
+  </head>
+  <body>
+    <div id="boot" aria-hidden="true"></div>
+    <div id="root"></div>
+    <noscript>
+      <p style="font: 18px/1.5 system-ui, sans-serif; padding: 32px; color: #24211f">
+        ASTRA is an AI-orchestrated operating system for prop-firm trading. Risk control governs; profit is an
+        outcome.
+      </p>
+    </noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

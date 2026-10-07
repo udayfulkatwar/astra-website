@@ -1,0 +1,376 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--gutter);
+}
+
+.card {
+  grid-column: span var(--span);
+  display: grid;
+  grid-template-rows: minmax(190px, 1fr) auto;
+  overflow: hidden;
+  transition: border-color 0.5s ease, transform 0.7s var(--ease-out);
+}
+.card:hover {
+  border-color: color-mix(in srgb, var(--k) 45%, transparent);
+  transform: translateY(-3px);
+}
+.card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(70% 60% at 50% 0%, color-mix(in srgb, var(--k) 10%, transparent), transparent 70%);
+  opacity: 0.6;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+.card:hover::after {
+  opacity: 1;
+}
+
+.visual {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 22px 22px 0;
+  min-height: 190px;
+}
+
+.text {
+  display: grid;
+  gap: 10px;
+  padding: 22px;
+  align-content: start;
+}
+.name {
+  font-size: clamp(1.25rem, 1.6vw, 1.6rem);
+  font-stretch: 112%;
+  font-weight: 520;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+.role {
+  color: var(--mute);
+  font-size: 0.9375rem;
+  max-width: 52ch;
+}
+
+/* ---------- radar ---------- */
+.radar {
+  position: relative;
+  width: min(230px, 80%);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  background: radial-gradient(circle, rgba(232, 226, 216, 0.04), transparent 70%);
+}
+.radar i {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+}
+.sweep {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, rgba(255, 107, 44, 0.32), transparent 22%);
+  animation: spin 5s linear infinite;
+}
+.radar b {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  margin: -3px;
+  border-radius: 50%;
+  background: var(--bone);
+  animation: ping 3.5s ease-out infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes ping {
+  0%,
+  100% {
+    opacity: 0.25;
+    box-shadow: 0 0 0 0 rgba(232, 226, 216, 0.4);
+  }
+  15% {
+    opacity: 1;
+    box-shadow: 0 0 0 8px rgba(232, 226, 216, 0);
+  }
+}
+
+/* ---------- news ---------- */
+.news {
+  width: 100%;
+  display: grid;
+  gap: 10px;
+}
+.news li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: rgba(232, 226, 216, 0.025);
+  animation: rise 0.8s var(--ease-out) both;
+}
+.bars {
+  flex: 1;
+  display: grid;
+  gap: 5px;
+}
+.bars i {
+  display: block;
+  height: 5px;
+  border-radius: 3px;
+  background: rgba(232, 226, 216, 0.16);
+}
+.news em {
+  font-style: normal;
+  font-family: var(--mono);
+  font-size: var(--fs-micro);
+  padding: 3px 8px;
+  border-radius: 999px;
+  color: var(--mute);
+  background: rgba(232, 226, 216, 0.06);
+}
+.news em[data-tone='pass'] {
+  color: var(--pass);
+  background: var(--pass-soft);
+}
+.news em[data-tone='ember'] {
+  color: var(--ember);
+  background: var(--ember-soft);
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+/* ---------- calendar ---------- */
+.calendar {
+  width: 100%;
+  display: grid;
+  gap: 10px;
+  color: var(--faint);
+}
+.axis {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 0.625rem;
+}
+.track {
+  position: relative;
+  height: 44px;
+  border-radius: 8px;
+  background: repeating-linear-gradient(90deg, rgba(232, 226, 216, 0.08) 0 1px, transparent 1px 12.5%);
+  border: 1px solid var(--line);
+}
+.blackout {
+  position: absolute;
+  left: 25%;
+  width: 50%;
+  top: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(-45deg, rgba(255, 107, 44, 0.2) 0 6px, rgba(255, 107, 44, 0.06) 6px 12px);
+  border-left: 1px solid var(--ember);
+  border-right: 1px solid var(--ember);
+}
+.event {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  margin: -5px;
+  border-radius: 50%;
+  background: var(--ember);
+  box-shadow: 0 0 14px var(--ember);
+}
+.now {
+  position: absolute;
+  top: -4px;
+  bottom: -4px;
+  width: 1px;
+  background: var(--bone);
+  animation: scan 7s linear infinite;
+}
+@keyframes scan {
+  from {
+    left: 4%;
+  }
+  to {
+    left: 96%;
+  }
+}
+
+/* ---------- gauge ---------- */
+.gauge {
+  width: min(240px, 90%);
+  display: grid;
+  justify-items: center;
+}
+.gauge svg {
+  width: 100%;
+  overflow: visible;
+}
+.gaugeTrack,
+.gaugeFill {
+  fill: none;
+  stroke-width: 10;
+  stroke-linecap: round;
+}
+.gaugeTrack {
+  stroke: rgba(232, 226, 216, 0.1);
+}
+.gaugeFill {
+  stroke: var(--pass);
+  stroke-dasharray: 34 100;
+  animation: fill 2.4s var(--ease-out) both;
+}
+@keyframes fill {
+  from {
+    stroke-dasharray: 0 100;
+  }
+}
+.mark {
+  stroke: var(--ember);
+  stroke-width: 2;
+}
+.gaugeRead {
+  margin-top: -38px;
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+}
+.gaugeRead strong {
+  font-size: 1.6rem;
+  font-weight: 560;
+  font-stretch: 115%;
+  font-variant-numeric: tabular-nums;
+}
+.gaugeRead span {
+  color: var(--faint);
+}
+
+/* ---------- rules ---------- */
+.rules {
+  width: 100%;
+  display: grid;
+  gap: 8px;
+  font-size: 0.8125rem;
+  color: var(--mute);
+}
+.rules li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: rise 0.7s var(--ease-out) both;
+}
+.check {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  border: 1px solid var(--ember);
+  position: relative;
+}
+.check::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  width: 5px;
+  height: 9px;
+  border: solid var(--ember);
+  border-width: 0 1.5px 1.5px 0;
+  transform: rotate(45deg);
+}
+
+/* ---------- ticket ---------- */
+.ticket {
+  width: min(320px, 100%);
+  border-radius: 10px;
+  border: 1px solid var(--line-strong);
+  background: rgba(10, 11, 14, 0.6);
+  padding: 12px 14px;
+  display: grid;
+  gap: 8px;
+  font-size: 0.8125rem;
+}
+.ticketHead {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed var(--line-strong);
+  color: var(--faint);
+}
+.ticketState {
+  font-family: var(--mono);
+  font-size: var(--fs-micro);
+  color: var(--pass);
+}
+.ticketRow {
+  display: flex;
+  justify-content: space-between;
+  color: var(--mute);
+}
+.ok {
+  font-family: var(--mono);
+  font-size: var(--fs-micro);
+  color: var(--pass);
+}
+
+/* ---------- record ---------- */
+.record {
+  width: 100%;
+  margin: 0;
+  padding: 14px 16px;
+  border-radius: 10px;
+  background: rgba(10, 11, 14, 0.6);
+  border: 1px solid var(--line);
+  font: 0.75rem/1.65 var(--mono);
+  color: var(--mute);
+  overflow-x: auto;
+}
+.k {
+  color: var(--faint);
+}
+.s {
+  color: var(--bone);
+}
+.e {
+  color: var(--ember);
+}
+.l {
+  color: var(--lilac);
+}
+
+@media (max-width: 1023px) {
+  .card {
+    grid-column: span 6;
+  }
+}
+@media (max-width: 680px) {
+  .card {
+    grid-column: 1 / -1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sweep,
+  .radar b,
+  .now {
+    animation: none;
+  }
+}

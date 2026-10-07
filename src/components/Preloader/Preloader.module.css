@@ -1,0 +1,71 @@
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  background: var(--void);
+  color: var(--bone);
+  clip-path: inset(0% 0% 0% 0%);
+  display: grid;
+  grid-template-rows: 1fr auto;
+  padding: var(--pad-x);
+}
+
+.center {
+  align-self: center;
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+}
+
+.mask {
+  display: block;
+  overflow: hidden;
+}
+.mask > span {
+  display: block;
+}
+
+.word {
+  font-size: clamp(2.6rem, 6vw, 5.5rem);
+  font-stretch: 125%;
+  font-weight: 560;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.note {
+  font-family: var(--mono);
+  font-size: var(--fs-micro);
+  color: var(--mute);
+}
+
+.foot {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: end;
+  gap: 24px;
+}
+
+.count {
+  font-size: clamp(3rem, 9vw, 8rem);
+  font-stretch: 112%;
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  line-height: 0.82;
+  font-variant-numeric: tabular-nums;
+}
+
+.track {
+  height: 1px;
+  background: var(--line-strong);
+  margin-bottom: 0.6em;
+  overflow: hidden;
+}
+
+.bar {
+  display: block;
+  height: 100%;
+  background: var(--ember);
+  transform-origin: left;
+  transform: scaleX(0);
+}
