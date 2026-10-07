@@ -2,8 +2,8 @@ import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  // relative base so the build can be hosted from any path
-  base: './',
+  // Served from the apex domain root (https://astragrp.net/).
+  base: '/',
   plugins: [react()],
   worker: { format: 'es' },
   build: {
