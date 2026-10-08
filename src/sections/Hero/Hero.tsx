@@ -4,6 +4,7 @@ import { useEffect, useLayoutEffect, useRef } from 'react'
 import { Magnetic } from '../../components/Magnetic/Magnetic'
 import { scrollToTarget, useLenis } from '../../components/SmoothScroll/SmoothScroll'
 import { SplitLines } from '../../components/SplitLines/SplitLines'
+import { SITE } from '../../lib/content'
 import { emit, on, store } from '../../lib/store'
 import { AgentLog } from './AgentLog'
 import styles from './Hero.module.css'
@@ -159,6 +160,15 @@ export function Hero() {
                     }}
                   >
                     See the pipeline
+                  </a>
+                  <a
+                    href={SITE.demoUrl}
+                    className={styles.secondary}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Click for demo
+                    <span className="sr-only"> (opens in a new tab)</span>
                   </a>
                 </div>
               )}

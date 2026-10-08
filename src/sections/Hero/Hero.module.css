@@ -122,6 +122,7 @@
 .secondary {
   font-size: 0.9375rem;
   color: var(--bone);
+  white-space: nowrap;
   background-image: linear-gradient(currentColor, currentColor);
   background-size: 100% 1px;
   background-position: 0 100%;

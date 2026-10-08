@@ -3,6 +3,7 @@ export const SITE = {
   name: 'ASTRA',
   expansion: 'Autonomous Strategic Trading & Risk Agent',
   email: 'udayfulkatwar@astragrp.net',
+  demoUrl: 'https://claude.ai/artifact/7h7cWk7fJHQJHb3tWNVLSr',
 }
 
 /* ------------------------------------------------------------- pipeline */
