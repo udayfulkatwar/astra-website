@@ -77,12 +77,12 @@ New files under `public/media`, which `main` does not have:
 | --- | ---: |
 | `astra-launch-film-1080p.mp4` | 22,187,489 |
 | `astra-launch-film-720p.mp4` | 8,696,215 |
-| `astra-launch-film-poster.webp` | 61,808 |
+| `astra-launch-film-poster.webp` | 73,422 |
 | `overview.webp` | 70,056 |
 | `risk.webp` | 55,746 |
 | `approvals.webp` | 51,780 |
 | `audit.webp` | 36,998 |
-| **Total** | **31,160,092** |
+| **Total** | **31,171,706** |
 
 A wide visit fetches the poster and the 1080p film when the visitor plays it. A viewport at or below 900px, or save-data, fetches the 720p film instead. The four product images load when that section is on screen.
 
@@ -130,7 +130,7 @@ Google Chrome 148.0.7778.96 reports `canPlayType('video/mp4; codecs="avc1.640028
 
 The old handler treated every `error` event as a failed film. At 1440 the 720p `<source media="(max-width: 900px)">` fires `error` on itself when the query does not match. That event reaches the video’s React handler. At that moment `video.error` is null, `networkState` is `NETWORK_IDLE`, `readyState` is 0, and the only film request is the poster. The handler now reads the video element: it shows the line only when `video.error` is set and is not `MEDIA_ERR_ABORTED`, or when `networkState` is `NETWORK_NO_SOURCE`.
 
-Before play, the painted frame matches `astra-launch-film-poster.webp` (SSIM 0.867 against the file, which itself matches the 48-second wordmark at SSIM 0.996). It does not match the film at 20s or 40s (SSIM about 0.50 and 0.54). No MP4 is requested until play. The earlier “Trade Approval Center at 0:00” description does not match those pixels.
+The poster is the settled end card at 77.933 seconds (30 fps frame 2338), after the fade-in and before the fade-out. It shows the star, ASTRA, and “Autonomous Strategic Trading & Risk Agent”. The founder names and the short risk line on that card are part of the same frame. There is no narrative subtitle. It is 1920×1080 WebP, 73,422 bytes. SSIM against that source frame is 0.9997. No MP4 is requested until play.
 
 After play, in the same Chrome: 1440 loads `astra-launch-film-1080p.mp4` with HTTP 206 (`bytes 0-22187488/22187489`) and reaches 20.05s with no error line. 390 loads `astra-launch-film-720p.mp4` with HTTP 206 (`bytes 0-8696214/8696215`) and reaches 20.19s with no error line. Tab from the film reaches the player, then “Explore the Demo”, not “Download the film”. The fallback link is omitted when the browser can play MP4. `?filmFail=1` points the sources at a missing file; after play the line “The film could not be loaded. Download the film.” appears, and that link is visible.
 
@@ -152,13 +152,13 @@ After play, in the same Chrome: 1440 loads `astra-launch-film-1080p.mp4` with HT
 | 320 `scrollWidth === clientWidth` | PASS. 320 and 320. Also true at the other six widths. |
 | Lab LCP, CLS, TBT vs `main` | PASS as lab data only. See the table above. Not a field score. |
 | Bundle gzip delta | PASS. JS +4,299 bytes. CSS +923 bytes. |
-| New media weight | PASS. 31,160,092 bytes, itemised above. |
+| New media weight | PASS. 31,171,706 bytes, itemised above. |
 | Secret scan of `dist/` | PASS. No keys, tokens, env files, or Astra config/strategy files. |
 | `CNAME`, deploy workflow, robots, sitemap vs `main` | PASS. No diff. |
 | Rendered hrefs | PASS. Table above. |
 | Pages preview deployment | NOT APPLICABLE. Not requested, and Pages settings were not changed. |
 | Film codec | PASS. Chrome 148, H.264 `probably`. Not the cause of the error line. |
-| Film poster before play, 1440 and 390 | PASS. Poster WebP only. No error line. No MP4 request. |
+| Film poster before play, 1440 and 390 | PASS. Poster is the 77.933s end card. Poster WebP only. No error line. No MP4 request. |
 | Film playback, 1440 and 390 | PASS. 1080p at 1440 and 720p at 390, each HTTP 206. No error line at 20s. |
 | Film failure | PASS. `?filmFail=1`, after play, shows “The film could not be loaded. Download the film.” |
 | Download link in the tab order | PASS. Absent while the film can play. The visible link is only in the failure line. |
