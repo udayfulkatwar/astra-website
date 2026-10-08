@@ -1,5 +1,13 @@
 # Change log
 
+## 2026-10-08 — Baseline, design inventory, launch film
+
+- **Branch:** `astra-v2`, from `main` at `d4fac282886e153d1614d229775c98ed0991c95b`. Not merged. `main` was not pushed.
+- **Files added:** `docs/BASELINE-2026-10-08.md`, `docs/PR1-QUALITY-AUDIT.md`, `docs/DESIGN-INVENTORY.md`, `docs/RESOURCE-CHECKS.md`, `public/media/film/astra-launch-film-1080p.mp4`, `public/media/film/astra-launch-film-poster.webp`, `docs/CHANGELOG.md` (this entry).
+- **Purpose:** Reconfirm the live revision and the backup, audit PR #1 without building on it, extract the design inventory, and store the founder’s film unchanged. No new section was added to the page.
+- **Tests performed:** `npm ci`, `npm run build` of `d4fac28`, byte comparison with https://astragrp.net/, film sha256 and `ffprobe`, Chrome viewport captures of the production build and of PR #1. Details and PASS / FAIL / UNVERIFIED marks are in the four docs above.
+- **Deployment approval:** Not requested. Production was not modified.
+
 ## 2026-10-08 — Isolated checkpoint and test runner
 
 - **Release / commit:** production source remains `5e1059cdb111a4eb7e58f8d87c92d7306c925c23` on `udayfulkatwar/astra-website`. The restorable import in this workspace is `376a6c03c172e77bdb5b3c4caddb6b01f0bf99aa`.
