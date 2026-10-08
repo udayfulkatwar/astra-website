@@ -4,6 +4,16 @@ export const SITE = {
   expansion: 'Autonomous Strategic Trading & Risk Agent',
   email: 'udayfulkatwar@astragrp.net',
   demoUrl: 'https://claude.ai/artifact/7h7cWk7fJHQJHb3tWNVLSr',
+  /**
+   * The artifact URL is private to its owner and renders “Page not found” for
+   * everyone else. Keep the URL, and show the film link only after this is true.
+   */
+  demoPublic: false,
+}
+
+/** The film CTA is omitted entirely until a public demo URL is published. */
+export function demoIsPublic(site: { demoPublic: boolean } = SITE): boolean {
+  return site.demoPublic === true
 }
 
 /* ------------------------------------------------------------- pipeline */

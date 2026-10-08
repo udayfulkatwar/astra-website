@@ -1,5 +1,13 @@
 # Change log
 
+## 2026-10-08 — Hero demo link removed, private demo hidden
+
+- **Branch:** `astra-v2`. Not merged. `main` was not pushed.
+- **Hero:** “Click for demo” is removed. The row is Trade Gate, Meet ASTRA, Watch the video.
+- **Demo:** `SITE.demoUrl` is unchanged. `SITE.demoPublic` is `false`, so the film does not render “Explore the Demo” or its supporting line. The private artifact still answers HTTP 200 with Claude’s “Page not found” when logged out.
+- **Preview:** CI uploads the `dist/` build as the `astra-preview` artifact. The Pages deploy workflow, `public/CNAME`, `robots.txt`, and `sitemap.xml` were not changed.
+- **Deployment approval:** Not requested. Production was not modified.
+
 ## 2026-10-08 — Product, about, engineering, and the demo link
 
 - **Branch:** `astra-v2`. Not merged. `main` was not pushed.
