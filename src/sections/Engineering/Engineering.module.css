@@ -1,0 +1,64 @@
+.split {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(22px, 3vw, 48px);
+}
+
+.split h3 {
+  font-size: var(--fs-h3);
+  font-weight: 520;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+
+.split p {
+  color: var(--mute);
+  max-width: 48ch;
+}
+
+.flow {
+  display: grid;
+  gap: 10px;
+  margin-top: clamp(40px, 6vw, 80px);
+}
+
+.step {
+  display: grid;
+  grid-template-columns: auto minmax(12rem, 0.7fr) minmax(0, 1.4fr);
+  gap: 12px 22px;
+  align-items: baseline;
+  padding: 16px 18px;
+  border-radius: var(--radius);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-left: 2px solid var(--k, var(--bone));
+}
+
+.index {
+  font-family: var(--mono);
+  font-size: var(--fs-micro);
+  color: var(--k, var(--mute));
+}
+
+.stepName {
+  font-weight: 560;
+  letter-spacing: -0.02em;
+}
+
+.stepNote {
+  color: var(--mute);
+  min-width: 0;
+}
+
+@media (max-width: 800px) {
+  .split {
+    grid-template-columns: 1fr;
+  }
+  .step {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+  .stepNote {
+    grid-column: 2;
+  }
+}

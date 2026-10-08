@@ -237,7 +237,11 @@
 }
 
 .reset {
+  position: relative;
   justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   font-size: var(--fs-small);
   color: var(--mute);
   background-image: linear-gradient(currentColor, currentColor);

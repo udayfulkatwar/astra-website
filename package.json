@@ -9,7 +9,7 @@
     "postbuild": "node scripts/copy-spa-fallback.mjs",
     "lint": "oxlint",
     "preview": "vite preview",
-    "test": "node --experimental-strip-types --test src/**/*.test.ts"
+    "test": "node --experimental-strip-types --test src/lib/gate/canTrade.test.ts src/lib/productFacts.test.ts"
   },
   "dependencies": {
     "@fontsource-variable/archivo": "^5.3.0",
