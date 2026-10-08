@@ -354,18 +354,25 @@ main {
   color: var(--ember);
 }
 
+/* Header clearance for the sections that already used one, plus contact.
+   72px below 1024, about 82px at 1024, 89px from 1440. 80px and 96px keep the
+   section top inside that header and 24px below it.
+   Pipeline, agents, the gate, command, principles and rollout stay at 0.
+   An offset there landed the existing nav on the tail of the previous section. */
 #product,
 #engineering,
 #company,
-#astra-film {
-  scroll-margin-top: 70px;
+#astra-film,
+#contact {
+  scroll-margin-top: 80px;
 }
 @media (min-width: 1024px) {
   #product,
   #engineering,
   #company,
-  #astra-film {
-    scroll-margin-top: 89px;
+  #astra-film,
+  #contact {
+    scroll-margin-top: 96px;
   }
 }
 

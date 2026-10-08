@@ -1,5 +1,13 @@
 # Change log
 
+## 2026-10-08 — Deep links land below the header
+
+- **Branch:** `fix/scroll-anchors`, from `main` at `7d2fde5`. Not merged. `main` was not pushed.
+- **Deep links:** A fresh visit to a hash that names a section scrolls there when the loader opens, through Lenis, after fonts have settled. Reduced motion jumps immediately. A visit with no hash still starts at the top.
+- **Header offset:** `#product`, `#engineering`, `#company`, `#astra-film` and `#contact` use an 80px scroll-margin below 1024px and 96px from 1024px, so the section top sits just below the fixed header (about 72px on a narrow screen, about 89px at 1440).
+- **Nav landings:** `#pipeline`, `#agents`, `#gate`, `#command`, `#principles` and `#rollout` keep no scroll-margin. An offset showed the tail of the previous section under the header. Nav clicks and deep links for those sections land where the nav landed on `main`, with the section top at the viewport top.
+- **Deployment approval:** Not requested. Production was not modified.
+
 ## 2026-10-08 — Film error line only after a real failure
 
 - **Branch:** `astra-v2`. Not merged. `main` was not pushed.
