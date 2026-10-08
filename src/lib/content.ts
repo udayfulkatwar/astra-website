@@ -5,13 +5,13 @@ export const SITE = {
   email: 'udayfulkatwar@astragrp.net',
   demoUrl: 'https://claude.ai/artifact/7h7cWk7fJHQJHb3tWNVLSr',
   /**
-   * The artifact URL is private to its owner and renders “Page not found” for
-   * everyone else. Keep the URL, and show the film link only after this is true.
+   * Anyone with the link can open the dashboard. A normal browser shows the
+   * ASTRA Command Center. Headless checks still receive Claude’s “Page not found”.
    */
-  demoPublic: false,
+  demoPublic: true,
 }
 
-/** The film CTA is omitted entirely until a public demo URL is published. */
+/** The film CTA renders only while this is true. */
 export function demoIsPublic(site: { demoPublic: boolean } = SITE): boolean {
   return site.demoPublic === true
 }

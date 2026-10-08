@@ -6,7 +6,7 @@ Branch `astra-v2` at the commit that adds this file. Draft pull request #2. Not 
 
 The hero row is Trade Gate, Meet ASTRA, and Watch the video. “Click for demo” is gone.
 
-`SITE.demoUrl` is still `https://claude.ai/artifact/7h7cWk7fJHQJHb3tWNVLSr`. Logged out, that URL returns HTTP 200 and Claude’s “Page not found”, because the artifact is private to its owner. `SITE.demoPublic` is `false`. While it is false, the film does not render “Explore the Demo” or the line under the disclosure. Flip `demoPublic` to `true` only after a public URL is in `demoUrl`.
+`SITE.demoUrl` is still `https://claude.ai/artifact/7h7cWk7fJHQJHb3tWNVLSr`. `SITE.demoPublic` is `true`, so the film shows “Explore the Demo” and the line “Explore the ASTRA dashboard and available product workflows.” The label does not say “Live”. The coordinator opened that URL in a normal Chrome Incognito window, signed out, and saw the ASTRA Command Center dashboard (DEMO/SIMULATED banner, PAPER mode, three $50,000 paper accounts, and the sidebar). The share setting is “Anyone with the link”. Automated headless checks still receive Claude’s “Page not found”.
 
 Also on this branch, from the accepted earlier passes: the film section, product overview, about, and engineering sections; the chapter indicator hides as soon as the hero is left; the 320px header gap, 44px targets, and the overflow fixes.
 
@@ -107,7 +107,7 @@ CLS matches `main` on desktop and is 0 on the mobile emulation. LCP is lower on 
 
 Searched `dist/` for `AKIA…`, `ghp_…`, `sk-ant-`, `sk-proj-`, private-key blocks, `ASTRA_*KEY`, and `process.env`. None. No `.env` files in `dist/`. No `config/` directory and no strategy files from the Astra product repo.
 
-Strings that are present on purpose: `https://astragrp.net` in the page metadata, and the private `claude.ai` artifact URL inside the JavaScript because `SITE.demoUrl` is kept. “Click for demo” is not in the bundle. Library files also contain public URLs for React, three.js, and GSAP (`react.dev`, `github.com`, `gsap.com`, `docs.pmnd.rs`, `jcgt.org`, `opencollective.com`). No `localhost` and no private host.
+Strings that are present on purpose: `https://astragrp.net` in the page metadata, and the `claude.ai` artifact URL because `SITE.demoUrl` is the film link. “Click for demo” is not in the bundle. Library files also contain public URLs for React, three.js, and GSAP (`react.dev`, `github.com`, `gsap.com`, `docs.pmnd.rs`, `jcgt.org`, `opencollective.com`). No `localhost` and no private host.
 
 ## Link check
 
@@ -118,21 +118,21 @@ Every `href` in the rendered page, including the open menu:
 | `#pipeline`, `#top`, `#agents`, `#gate`, `#command`, `#contact`, `#product`, `#principles`, `#company`, `#astra-film` | PASS. Each id exists. |
 | `mailto:udayfulkatwar@astragrp.net` and the same address with the early-access subject | PASS |
 | `/media/film/astra-launch-film-1080p.mp4` | PASS. HTTP 200 from the local build. This is the film’s fallback download, not a new page. |
-
-The private demo URL is not an `href` in the rendered page while `demoPublic` is false.
+| `https://claude.ai/artifact/7h7cWk7fJHQJHb3tWNVLSr` | PASS. Rendered as “Explore the Demo”. The dashboard itself was verified manually; see the test table. |
 
 ## Preview artifact
 
-CI run [37787318275](https://github.com/udayfulkatwar/astra-website/actions/runs/37787318275) for this commit uploaded `astra-preview` (31,760,844 bytes, not expired). It is a zip of `dist/` on the Actions run. It is not a GitHub Pages deployment. `deploy.yml` and the Pages settings were not changed. The previous site commit `e34924b` uploaded a zip of the same size.
+CI run [37787318275](https://github.com/udayfulkatwar/astra-website/actions/runs/37787318275) for `168e10b` uploaded `astra-preview` (31,760,844 bytes, not expired). It is a zip of `dist/` on the Actions run. It is not a GitHub Pages deployment. `deploy.yml` and the Pages settings were not changed. Later doc-only commits upload another zip of the same site. Download `astra-preview` from the latest successful CI run on `astra-v2`.
 
 ## Tests
 
 | Check | Result |
 | --- | --- |
-| `npm test` | PASS. 19/19. Includes the hero labels and `demoPublic === false`. |
+| `npm test` | PASS. 19/19. The hero has no “Click for demo”. `demoPublic` is `true`, and the film line is the dashboard sentence. |
 | `npm run lint` | PASS. Exit 0. Existing warnings only. |
 | `npm run build` | PASS |
-| Hero is Trade Gate, Meet ASTRA, Watch the video, at 7 widths | PASS. Headless Chrome. “Click for demo” is absent. “Explore the Demo” is absent. |
+| Hero is Trade Gate, Meet ASTRA, Watch the video, at 7 widths | PASS. Headless Chrome. “Click for demo” is absent. Those shots were taken before the film CTA was turned back on. |
+| Demo destination | PASS. Verified manually in a Chrome Incognito window by the coordinator, not signed in. The URL loads the ASTRA Command Center dashboard, with the DEMO/SIMULATED banner, PAPER mode, three $50,000 paper accounts, and the sidebar. Share setting: “Anyone with the link”. Automated headless checks get “Page not found”. |
 | Full-page screenshots at 7 widths | PASS. Saved under the review shots for this pass. |
 | Hero and footer before/after against https://astragrp.net/ | PASS. Pairs at all 7 widths. |
 | Chrome console at 7 widths | PASS. No console or page errors. |
@@ -151,7 +151,7 @@ CI run [37787318275](https://github.com/udayfulkatwar/astra-website/actions/runs
 
 ## Known limits
 
-- The demo URL is still private. The film CTA stays off until `SITE.demoPublic` is set to `true` with a public URL.
+- Automated headless loads of the demo URL still show Claude’s “Page not found”. A normal browser does not.
 - Edge and Safari were not run.
 - Performance numbers are one headless machine, two samples, with no network throttling. The first `main` desktop TBT sample is noisy.
 - “Meet ASTRA” still scrolls to `#pipeline`. That wording was accepted earlier.

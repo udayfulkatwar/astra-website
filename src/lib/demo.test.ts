@@ -16,14 +16,15 @@ test('the hero is Trade Gate, Meet ASTRA, and Watch the video', () => {
   assert.equal(HERO.includes('demoUrl'), false)
 })
 
-test('the private demo url is kept and the film link stays hidden', () => {
+test('the film demo link is shown and the hero demo link is not', () => {
   assert.equal(SITE.demoUrl, 'https://claude.ai/artifact/7h7cWk7fJHQJHb3tWNVLSr')
-  assert.equal(SITE.demoPublic, false)
-  assert.equal(demoIsPublic(), false)
-  assert.equal(demoIsPublic({ demoPublic: true }), true)
-  assert.equal(DEMO_SUPPORT, 'Explore an interactive ASTRA demo running on simulated data.')
+  assert.equal(SITE.demoPublic, true)
+  assert.equal(demoIsPublic(), true)
+  assert.equal(demoIsPublic({ demoPublic: false }), false)
+  assert.equal(DEMO_SUPPORT, 'Explore the ASTRA dashboard and available product workflows.')
   assert.match(FILM, /demoIsPublic\(\)/)
   assert.match(FILM, /href=\{SITE\.demoUrl\}/)
   assert.match(FILM, /Explore the Demo/)
+  assert.equal(FILM.includes('Live'), false)
   assert.equal(FILM.includes('Click for demo'), false)
 })

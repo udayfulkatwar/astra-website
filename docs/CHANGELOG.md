@@ -1,5 +1,12 @@
 # Change log
 
+## 2026-10-08 — Film demo link shown
+
+- **Branch:** `astra-v2`. Not merged. `main` was not pushed.
+- **Demo:** `SITE.demoPublic` is `true`. Under the film, “Explore the Demo” points at `SITE.demoUrl`, with the line “Explore the ASTRA dashboard and available product workflows.” The label does not say “Live”. The hero still has no “Click for demo”.
+- **Destination:** The coordinator opened the URL in a normal Chrome Incognito window, signed out, and saw the ASTRA Command Center dashboard. Headless checks still receive “Page not found”.
+- **Deployment approval:** Not requested. Production was not modified.
+
 ## 2026-10-08 — Hero demo link removed, private demo hidden
 
 - **Branch:** `astra-v2`. Not merged. `main` was not pushed.
