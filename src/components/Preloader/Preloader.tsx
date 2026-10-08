@@ -50,6 +50,7 @@ export function Preloader({ waitForScene }: { waitForScene: boolean }) {
 
     const exit = () => {
       gsap.ticker.remove(tick)
+      emit('introReveal')
       const done = () => {
         store.introDone = true
         emit('introDone')

@@ -354,18 +354,34 @@ main {
   color: var(--ember);
 }
 
+/* Clearance for the fixed header: 72px below 1024, about 82px at 1024, 89px from 1440.
+   80px and 96px keep the section top inside that header and 24px below it. */
+#pipeline,
+#agents,
+#gate,
+#command,
 #product,
+#principles,
 #engineering,
+#rollout,
 #company,
-#astra-film {
-  scroll-margin-top: 70px;
+#astra-film,
+#contact {
+  scroll-margin-top: 80px;
 }
 @media (min-width: 1024px) {
+  #pipeline,
+  #agents,
+  #gate,
+  #command,
   #product,
+  #principles,
   #engineering,
+  #rollout,
   #company,
-  #astra-film {
-    scroll-margin-top: 89px;
+  #astra-film,
+  #contact {
+    scroll-margin-top: 96px;
   }
 }
 
