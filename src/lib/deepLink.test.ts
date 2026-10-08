@@ -29,11 +29,15 @@ test('a hash names an existing section, and a missing or empty hash does not', (
   assert.equal(deepLinkSelector('#pipeline', () => false), null)
 })
 
-test('every deep-link section shares the header scroll margin, including contact', () => {
+test('contact shares the header scroll margin, and nav sections that had none stay clear of it', () => {
   const css = readFileSync(new URL('../styles/global.css', import.meta.url), 'utf8')
-  for (const id of present) {
+  for (const id of ['product', 'engineering', 'company', 'astra-film', 'contact']) {
     assert.match(css, new RegExp(`#${id}[,\\s{]`))
   }
   assert.match(css, /#contact[\s\S]*scroll-margin-top:\s*80px/)
   assert.match(css, /#contact[\s\S]*scroll-margin-top:\s*96px/)
+  const selectors = css.split('\n').filter((line) => /^\s*#/.test(line)).join('\n')
+  for (const id of ['pipeline', 'agents', 'gate', 'command', 'principles', 'rollout']) {
+    assert.doesNotMatch(selectors, new RegExp(`#${id}\\b`))
+  }
 })
