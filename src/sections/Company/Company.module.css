@@ -22,10 +22,21 @@
 }
 
 .fact a {
+  position: relative;
   background-image: linear-gradient(currentColor, currentColor);
   background-size: 100% 1px;
   background-position: 0 100%;
   background-repeat: no-repeat;
+}
+@media (max-width: 767px) {
+  .fact a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -14px;
+    bottom: -14px;
+  }
 }
 
 @media (max-width: 700px) {
