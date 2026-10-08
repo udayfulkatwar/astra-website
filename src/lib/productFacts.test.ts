@@ -12,6 +12,7 @@ import {
   PRODUCT_GATE,
   PRODUCT_INTRO,
   PRODUCT_SHOTS,
+  COMPANY_INTRO,
 } from './productFacts.ts'
 
 const publicCopy = [
@@ -25,6 +26,7 @@ const publicCopy = [
   ...COMPANY.flatMap((c) => [c.label, c.text]),
   ...FLOW.flatMap((s) => [s.name, s.note]),
   ...PRODUCT_SHOTS.flatMap((s) => [s.alt, s.caption]),
+  COMPANY_INTRO,
 ].join('\n')
 
 test('company facts stay inside what the founder supplied', () => {
@@ -44,10 +46,13 @@ test('company facts stay inside what the founder supplied', () => {
 test('engineering copy does not claim a live model connection', () => {
   assert.match(ENGINEERING_WRITTEN, /Claude Code/)
   assert.match(ENGINEERING_WRITTEN, /founder’s direction/)
-  assert.match(ENGINEERING_WRITTEN, /not an Anthropic partnership/)
+  assert.match(ENGINEERING_WRITTEN, /not affiliated with Anthropic/)
+  assert.doesNotMatch(ENGINEERING_DECISIONS, /does not claim a live connection/)
   assert.match(ENGINEERING_DECISIONS, /not used for live decisions/)
   assert.match(ENGINEERING_DECISIONS, /advisory only/)
   assert.match(ENGINEERING_DECISIONS, /deterministic gate/)
+  assert.match(PRODUCT_INTRO, /What is built today/)
+  assert.match(COMPANY_INTRO, /Built in India/)
 })
 
 test('every demo frame is labelled simulated', () => {

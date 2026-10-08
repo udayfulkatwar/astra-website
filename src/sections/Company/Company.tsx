@@ -1,4 +1,4 @@
-import { COMPANY } from '../../lib/productFacts'
+import { COMPANY, COMPANY_INTRO } from '../../lib/productFacts'
 import styles from './Company.module.css'
 
 export function Company() {
@@ -9,7 +9,7 @@ export function Company() {
         <h2 id="company-title" className="display section-title">
           ASTRA, founded September 2026.
         </h2>
-        <p className="section-intro">India. One name: ASTRA.</p>
+        <p className="section-intro">{COMPANY_INTRO}</p>
       </div>
 
       <dl className={styles.facts}>

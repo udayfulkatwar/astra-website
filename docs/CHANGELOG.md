@@ -1,5 +1,12 @@
 # Change log
 
+## 2026-10-08 — Copy polish after review
+
+- **Files modified:** `src/lib/productFacts.ts`, `src/lib/productFacts.test.ts`, `src/sections/Company/Company.tsx`, `docs/CHANGELOG.md`.
+- **Purpose:** Replace the company intro, the product intro, and two engineering sentences with the founder’s review wording. No new facts.
+- **What was checked and left alone:** The five demo images return HTTP 200 from `/media/product/` and paint in a real viewport at 1440 and 390. The blank frames were lazy images in a full-page capture. The chapter indicator’s opacity is 0 once the hero is left, on this branch and on https://astragrp.net/. The “04/04” overlap was that same capture. No loading or indicator code was changed.
+- **Deployment approval:** Not requested.
+
 ## 2026-10-08 — Phase 2 public-site sections
 
 - **Branch:** `cursor/upgrade-plan-5880`. Not merged. Not deployed. `main` is still `d4fac282886e153d1614d229775c98ed0991c95b`.

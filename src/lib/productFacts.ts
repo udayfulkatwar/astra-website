@@ -16,7 +16,7 @@ export interface ProductShot {
 }
 
 export const PRODUCT_INTRO =
-  'The trading software is separate from this page. This is what its source contains.'
+  'What is built today, and what is still simulated or planned.'
 
 export const PRODUCT_BODY =
   'The operator dashboard, the risk engine, the prop-firm rule check, the decision gate, kill switches, the trade journal, and a hash-chained audit log are implemented. Paper trading runs on simulated prices. Live trading is not enabled.'
@@ -110,10 +110,10 @@ export const ENGINEERING_INTRO =
   'Claude Code helps write and test the software. It does not get permission to approve a trade.'
 
 export const ENGINEERING_WRITTEN =
-  'Claude (Claude Code) is used to help write and test the software, under the founder’s direction. That is a way of building the software. It is not an Anthropic partnership.'
+  'Claude (Claude Code) is used to help write and test the software, under the founder’s direction. ASTRA is an independent project and is not affiliated with Anthropic.'
 
 export const ENGINEERING_DECISIONS =
-  'The product source includes a Claude adapter. It is not used for live decisions, and this page does not claim a live connection. AI output is advisory only. The deterministic gate decides: risk, size, prop-firm limits, kill switches, and whether an order may be sent. An advisory note cannot approve a trade or set its size.'
+  'The product source includes a Claude adapter. It is not used for live decisions. AI output is advisory only. The deterministic gate decides: risk, size, prop-firm limits, kill switches, and whether an order may be sent. An advisory note cannot approve a trade or set its size.'
 
 export const FLOW = [
   { name: 'Market, news, calendar', kind: 'data' as const, note: 'Observed inputs. Missing data stays missing.' },
@@ -122,6 +122,9 @@ export const FLOW = [
   { name: 'Paper broker', kind: 'exec' as const, note: 'Simulated fills. A live broker is not enabled.' },
   { name: 'Journal and audit log', kind: 'record' as const, note: 'What was decided, and why.' },
 ]
+
+export const COMPANY_INTRO =
+  'Built in India to help prop-firm and independent traders protect their accounts first: deterministic risk controls stand in front of every trade.'
 
 export const COMPANY = [
   { label: 'Founder', text: 'Uday Fulkatwar' },
