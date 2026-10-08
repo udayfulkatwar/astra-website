@@ -123,7 +123,7 @@ The private demo URL is not an `href` in the rendered page while `demoPublic` is
 
 ## Preview artifact
 
-CI run [37785878412](https://github.com/udayfulkatwar/astra-website/actions/runs/37785878412) for `e34924b` uploaded `astra-preview` (31,760,844 bytes, not expired). It is a zip of `dist/` on the Actions run. It is not a GitHub Pages deployment. `deploy.yml` and the Pages settings were not changed. A later commit that only changes docs will upload a new zip of the same site.
+CI run [37787318275](https://github.com/udayfulkatwar/astra-website/actions/runs/37787318275) for this commit uploaded `astra-preview` (31,760,844 bytes, not expired). It is a zip of `dist/` on the Actions run. It is not a GitHub Pages deployment. `deploy.yml` and the Pages settings were not changed. The previous site commit `e34924b` uploaded a zip of the same size.
 
 ## Tests
 
