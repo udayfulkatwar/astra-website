@@ -1,0 +1,62 @@
+.follow {
+  max-width: 68ch;
+  color: var(--mute);
+}
+
+.rule {
+  max-width: 78ch;
+  margin: clamp(28px, 3.5vw, 48px) 0;
+  padding: 16px 18px;
+  color: var(--bone);
+}
+
+.layers {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+}
+
+.layer {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  column-gap: 18px;
+  row-gap: 8px;
+  align-items: baseline;
+  min-width: 0;
+  padding: 16px 18px;
+}
+
+.idx {
+  color: var(--faint);
+}
+
+.name {
+  font-size: clamp(1.15rem, 1.5vw, 1.45rem);
+  font-stretch: 112%;
+  font-weight: 520;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.text {
+  grid-column: 2 / -1;
+  max-width: 68ch;
+  color: var(--mute);
+}
+
+.note {
+  margin-top: clamp(22px, 3vw, 36px);
+  max-width: 62ch;
+  font-size: var(--fs-small);
+  color: var(--mute);
+}
+
+@media (max-width: 700px) {
+  .layer {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+.layer :global(.tag),
+.text {
+  grid-column: 1 / -1;
+}
+}

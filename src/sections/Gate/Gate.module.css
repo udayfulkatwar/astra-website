@@ -237,12 +237,16 @@
 }
 
 .reset {
+  position: relative;
   justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   font-size: var(--fs-small);
   color: var(--mute);
   background-image: linear-gradient(currentColor, currentColor);
   background-size: 100% 1px;
-  background-position: 0 100%;
+  background-position: 0 1.15em;
   background-repeat: no-repeat;
   transition: color 0.3s ease;
 }

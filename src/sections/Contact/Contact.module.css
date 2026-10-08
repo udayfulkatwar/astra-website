@@ -4,6 +4,7 @@
   min-height: 112svh;
   display: grid;
   grid-template-rows: 1fr auto;
+  min-width: 0;
   color: var(--bone);
   background: var(--void);
   padding: calc(var(--section-y) * 0.8) var(--pad-x) clamp(20px, 2.4vw, 36px);
@@ -21,14 +22,20 @@
   display: grid;
   gap: clamp(20px, 2.4vw, 30px);
   max-width: min(780px, 62vw);
+  min-width: 0;
 }
 
 .title {
+  max-width: 100%;
   font-size: clamp(2.6rem, 6.4vw, 7.4rem);
+}
+.title :global(.line),
+.title :global(.inner) {
+  max-width: 100%;
 }
 
 .lead {
-  max-width: 44ch;
+  max-width: min(44ch, 100%);
   color: var(--mute);
   font-size: var(--fs-lead);
   line-height: 1.4;
@@ -97,13 +104,16 @@
   justify-items: start;
 }
 .mail {
+  max-width: 100%;
   font-size: var(--fs-lead);
   user-select: all;
+  overflow-wrap: anywhere;
 }
 .copy {
+  min-height: 44px;
   font-size: var(--fs-small);
   color: var(--mute);
-  padding: 6px 12px;
+  padding: 10px 14px;
   border-radius: 999px;
   border: 1px solid var(--line-strong);
   transition: color 0.3s ease, border-color 0.3s ease;
@@ -120,6 +130,7 @@
   justify-content: space-between;
   align-items: end;
   gap: 28px;
+  min-width: 0;
   padding-top: 20px;
   border-top: 1px solid var(--line);
   font-size: var(--fs-small);
@@ -132,14 +143,16 @@
 
 .sessions {
   display: grid;
-  grid-template-columns: repeat(2, auto);
+  grid-template-columns: repeat(2, minmax(0, max-content));
   gap: 6px 26px;
   font-variant-numeric: tabular-nums;
 }
 .sessions li {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
   align-items: baseline;
+  min-width: 0;
 }
 .sessions li > span:first-child {
   color: var(--bone);
@@ -179,17 +192,21 @@
   justify-content: flex-end;
 }
 .link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   font-size: inherit;
   color: var(--bone);
   background-image: linear-gradient(currentColor, currentColor);
   background-size: 100% 1px;
-  background-position: 0 100%;
+  background-position: 0 1.15em;
   background-repeat: no-repeat;
 }
 
 @media (max-width: 1023px) {
   .main {
-    max-width: none;
+    max-width: 100%;
   }
   .footer {
     grid-template-columns: 1fr 1fr;
@@ -197,6 +214,12 @@
   .disclaimer {
     grid-column: 1 / -1;
     grid-row: 1;
+  }
+}
+
+@media (max-width: 399px) {
+  .sessions {
+    grid-template-columns: 1fr;
   }
 }
 

@@ -4,6 +4,16 @@ export const SITE = {
   expansion: 'Autonomous Strategic Trading & Risk Agent',
   email: 'udayfulkatwar@astragrp.net',
   demoUrl: 'https://claude.ai/artifact/7h7cWk7fJHQJHb3tWNVLSr',
+  /**
+   * Anyone with the link can open the dashboard. A normal browser shows the
+   * ASTRA Command Center. Headless checks still receive Claude’s “Page not found”.
+   */
+  demoPublic: true,
+}
+
+/** The film CTA renders only while this is true. */
+export function demoIsPublic(site: { demoPublic: boolean } = SITE): boolean {
+  return site.demoPublic === true
 }
 
 /* ------------------------------------------------------------- pipeline */

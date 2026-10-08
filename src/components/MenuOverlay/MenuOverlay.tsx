@@ -6,7 +6,13 @@ import { MarketSessions } from '../LocalTime/MarketSessions'
 import { SITE } from '../../lib/content'
 import styles from './MenuOverlay.module.css'
 
-const LINKS = [...NAV_LINKS, { href: '#principles', label: 'Principles' }, { href: '#contact', label: 'Access' }]
+const LINKS = [
+  ...NAV_LINKS,
+  { href: '#product', label: 'Product' },
+  { href: '#principles', label: 'Principles' },
+  { href: '#company', label: 'About' },
+  { href: '#contact', label: 'Access' },
+]
 const ease = [0.76, 0, 0.24, 1] as const
 
 export function MenuOverlay({ open, onClose }: { open: boolean; onClose: () => void }) {

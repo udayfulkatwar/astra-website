@@ -16,12 +16,14 @@
   row-gap: 10px;
   color: var(--bone);
   opacity: 0;
+  visibility: hidden;
   transform: translateY(8px);
-  transition: opacity 0.6s ease, transform 0.8s var(--ease-out);
 }
 .chapters[data-visible] {
   opacity: 1;
+  visibility: visible;
   transform: none;
+  transition: opacity 0.6s ease, transform 0.8s var(--ease-out);
 }
 
 .index {
@@ -93,7 +95,9 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .label {
+  .label,
+  .chapters[data-visible] {
     animation: none;
+    transition: none;
   }
 }
