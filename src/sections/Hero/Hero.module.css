@@ -120,6 +120,7 @@
 }
 
 .secondary {
+  position: relative;
   font-size: 0.9375rem;
   color: var(--bone);
   white-space: nowrap;
@@ -133,6 +134,16 @@
 .secondary:hover {
   background-size: 0% 1px;
   background-position: 100% 100%;
+}
+@media (max-width: 767px) {
+  .secondary::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -12px;
+    bottom: -12px;
+  }
 }
 
 /* ---------- agent log ---------- */

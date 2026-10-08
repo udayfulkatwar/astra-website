@@ -116,7 +116,7 @@
 .access {
   display: inline-flex;
   align-items: center;
-  height: 40px;
+  height: 44px;
   padding: 0 18px;
   border-radius: 999px;
   font-size: 0.8125rem;
@@ -131,8 +131,8 @@
 }
 
 .menuBtn {
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   background: rgba(20, 22, 27, 0.66);
   border: 1px solid var(--line-strong);
@@ -190,8 +190,14 @@
   }
 }
 @media (max-width: 420px) {
+  .header {
+    column-gap: 10px;
+  }
+  .logo {
+    min-width: 0;
+  }
   .access {
-    padding: 0 14px;
-    height: 38px;
+    padding: 0 12px;
+    height: 44px;
   }
 }
