@@ -1,8 +1,8 @@
 # ASTRA website upgrade plan — phase 1
 
-Plan only. Nothing in this change alters the page, the build output, DNS, or GitHub Pages.
+Phase 2 has implemented the approved answers on this branch. This file is still the inspection and the plan. [CHANGELOG.md](CHANGELOG.md) records what shipped, what was measured after the change, and what was not deployed.
 
-Do not merge this pull request. Do not push it to `main`. A push to `main` deploys https://astragrp.net/ immediately.
+Do not merge this pull request until the founder says so. Do not push it to `main`. A push to `main` deploys https://astragrp.net/ immediately.
 
 This plan builds on [AUDIT-2026-10-08.md](AUDIT-2026-10-08.md) and [CHANGELOG.md](CHANGELOG.md). It does not repeat that audit. It records what the separate product repository actually contains, where new sections would go, the responsive problems measured on this pass, and the performance baseline measured on this pass.
 
