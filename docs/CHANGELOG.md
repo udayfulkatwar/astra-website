@@ -1,5 +1,13 @@
 # Change log
 
+## 2026-10-08 — Hero labels and the ASTRA film section
+
+- **Branch:** `astra-v2`. Not merged. `main` was not pushed.
+- **Tasks:** 004 and 005 only. The demo button (task 006) was not added, and the hero “Click for demo” link was left as it is.
+- **Hero:** “Try the gate” is now “Trade Gate” (still `#gate`, still the pill). “See the pipeline” is now “Meet ASTRA” (still `#pipeline`, still the text link). A “Watch the video” text link points at `#astra-film`. The Gate section heading is unchanged.
+- **Film:** `#astra-film` sits after `#rollout` and before `#contact`. Native video, no autoplay. Poster `/media/film/astra-launch-film-poster.webp`. Master `/media/film/astra-launch-film-1080p.mp4` is byte-identical to the file already on this branch. New derivative `public/media/film/astra-launch-film-720p.mp4` (H.264/AAC, faststart, CRF 23) plays at viewports up to 900px and when save-data is on.
+- **Deployment approval:** Not requested. Production was not modified.
+
 ## 2026-10-08 — Baseline, design inventory, launch film
 
 - **Branch:** `astra-v2`, from `main` at `d4fac282886e153d1614d229775c98ed0991c95b`. Not merged. `main` was not pushed.

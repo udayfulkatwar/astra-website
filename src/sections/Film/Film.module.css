@@ -1,0 +1,55 @@
+.film {
+  scroll-margin-top: 70px;
+}
+
+@media (min-width: 1024px) {
+  .film {
+    scroll-margin-top: 89px;
+  }
+}
+
+.film:focus,
+.film:focus-visible {
+  outline: none;
+}
+
+.figure {
+  margin: 0;
+}
+
+.label {
+  margin-bottom: 12px;
+  color: var(--mute);
+}
+
+.frame {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line-strong);
+  background: var(--panel-solid);
+  overflow: hidden;
+}
+
+.player {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: var(--void);
+}
+
+.error,
+.disclosure {
+  max-width: 68ch;
+  margin-top: 14px;
+  font-size: var(--fs-small);
+  line-height: 1.5;
+  color: var(--mute);
+}
+
+.download {
+  color: var(--bone);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

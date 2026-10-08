@@ -120,6 +120,7 @@
 }
 
 .secondary {
+  position: relative;
   font-size: 0.9375rem;
   color: var(--bone);
   white-space: nowrap;
@@ -291,6 +292,17 @@
   }
   .hint {
     display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .secondary::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -12px;
+    bottom: -12px;
   }
 }
 

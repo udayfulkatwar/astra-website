@@ -5,6 +5,7 @@ import { Magnetic } from '../../components/Magnetic/Magnetic'
 import { scrollToTarget, useLenis } from '../../components/SmoothScroll/SmoothScroll'
 import { SplitLines } from '../../components/SplitLines/SplitLines'
 import { SITE } from '../../lib/content'
+import { FILM, filmHref } from '../Film/filmSource'
 import { emit, on, store } from '../../lib/store'
 import { AgentLog } from './AgentLog'
 import styles from './Hero.module.css'
@@ -148,7 +149,7 @@ export function Hero() {
                         scrollToTarget(lenis, '#gate')
                       }}
                     >
-                      Try the gate
+                      Trade Gate
                     </a>
                   </Magnetic>
                   <a
@@ -159,7 +160,22 @@ export function Hero() {
                       scrollToTarget(lenis, '#pipeline')
                     }}
                   >
-                    See the pipeline
+                    Meet ASTRA
+                  </a>
+                  <a
+                    href={filmHref}
+                    className={styles.secondary}
+                    onClick={(e) => {
+                      const section = document.getElementById(FILM.sectionId)
+                      if (!store.reducedMotion) {
+                        e.preventDefault()
+                        scrollToTarget(lenis, filmHref)
+                        if (location.hash !== filmHref) history.pushState(null, '', filmHref)
+                      }
+                      section?.focus({ preventScroll: true })
+                    }}
+                  >
+                    Watch the video
                   </a>
                   <a
                     href={SITE.demoUrl}

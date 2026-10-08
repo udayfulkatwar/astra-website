@@ -11,6 +11,7 @@ import { on } from './lib/store'
 import { Agents } from './sections/Agents/Agents'
 import { Command } from './sections/Command/Command'
 import { Contact } from './sections/Contact/Contact'
+import { Film } from './sections/Film/Film'
 import { Gate } from './sections/Gate/Gate'
 import { Hero } from './sections/Hero/Hero'
 import { HeroFallback } from './sections/Hero/HeroFallback'
@@ -56,6 +57,7 @@ export default function App() {
           <Command />
           <Principles />
           <Rollout />
+          <Film />
         </div>
         <Contact webgl={webgl} />
       </main>
