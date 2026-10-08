@@ -354,6 +354,21 @@ main {
   color: var(--ember);
 }
 
+#product,
+#engineering,
+#company,
+#astra-film {
+  scroll-margin-top: 70px;
+}
+@media (min-width: 1024px) {
+  #product,
+  #engineering,
+  #company,
+  #astra-film {
+    scroll-margin-top: 89px;
+  }
+}
+
 /* section scaffolding shared by every content section */
 .section {
   position: relative;

@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { scrollToTarget, useLenis } from '../../components/SmoothScroll/SmoothScroll'
+import { SITE } from '../../lib/content'
 import { store } from '../../lib/store'
-import { FILM, chooseFilmFile, compactMediaQuery, readSaveData } from './filmSource'
+import { FILM, chooseFilmFile, compactMediaQuery, DEMO_SUPPORT, readSaveData } from './filmSource'
 import styles from './Film.module.css'
 
 /**
@@ -92,6 +93,11 @@ export function Film() {
           </p>
         )}
         <figcaption className={styles.disclosure}>{FILM.disclosure}</figcaption>
+        <p className={styles.support}>{DEMO_SUPPORT}</p>
+        <a className={styles.demo} href={SITE.demoUrl} target="_blank" rel="noopener noreferrer">
+          Explore the Demo
+          <span className="sr-only"> (opens in a new tab)</span>
+        </a>
       </figure>
     </section>
   )

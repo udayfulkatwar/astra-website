@@ -10,13 +10,16 @@ import { usePerformanceTier } from './hooks/usePerformanceTier'
 import { on } from './lib/store'
 import { Agents } from './sections/Agents/Agents'
 import { Command } from './sections/Command/Command'
+import { Company } from './sections/Company/Company'
 import { Contact } from './sections/Contact/Contact'
+import { Engineering } from './sections/Engineering/Engineering'
 import { Film } from './sections/Film/Film'
 import { Gate } from './sections/Gate/Gate'
 import { Hero } from './sections/Hero/Hero'
 import { HeroFallback } from './sections/Hero/HeroFallback'
 import { Pipeline } from './sections/Pipeline/Pipeline'
 import { Principles } from './sections/Principles/Principles'
+import { Product } from './sections/Product/Product'
 import { Rollout } from './sections/Rollout/Rollout'
 
 // three.js and friends load in their own chunk; the DOM paints first
@@ -55,8 +58,11 @@ export default function App() {
           <Agents />
           <Gate />
           <Command />
+          <Product />
           <Principles />
+          <Engineering />
           <Rollout />
+          <Company />
           <Film />
         </div>
         <Contact webgl={webgl} />

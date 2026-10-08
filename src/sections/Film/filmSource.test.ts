@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
-import { FILM, chooseFilmFile, compactMediaQuery, filmHref } from './filmSource.ts'
+import { FILM, chooseFilmFile, compactMediaQuery, DEMO_SUPPORT, filmHref } from './filmSource.ts'
 
 test('wide screens keep the master unless save-data is on', () => {
   assert.equal(chooseFilmFile({ width: 901, saveData: false }), '1080')
@@ -27,4 +27,5 @@ test('the film anchor and the disclosure stay exact', () => {
   assert.equal(FILM.label, 'ASTRA — Product Vision & Risk Architecture')
   assert.equal(FILM.master, '/media/film/astra-launch-film-1080p.mp4')
   assert.equal(FILM.compact, '/media/film/astra-launch-film-720p.mp4')
+  assert.equal(DEMO_SUPPORT, 'Explore an interactive ASTRA demo running on simulated data.')
 })

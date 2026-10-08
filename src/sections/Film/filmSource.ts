@@ -11,6 +11,9 @@ export const FILM = {
     'Conceptual presentation. Illustrative interfaces and simulated data are shown. This film does not demonstrate verified live trading performance.',
 } as const
 
+/** The artifact URL is not a dashboard. It currently returns Claude's "Page not found". */
+export const DEMO_SUPPORT = 'Explore an interactive ASTRA demo running on simulated data.'
+
 export const filmHref = `#${FILM.sectionId}`
 
 export const compactMediaQuery = `(max-width: ${FILM.compactMaxWidth}px)`

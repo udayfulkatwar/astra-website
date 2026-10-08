@@ -1,5 +1,13 @@
 # Change log
 
+## 2026-10-08 — Product, about, engineering, and the demo link
+
+- **Branch:** `astra-v2`. Not merged. `main` was not pushed.
+- **Fixes:** The hero chapter indicator hides as soon as the hero is left (`visibility: hidden`, no fade over the next section). The film poster is the 48s wordmark file already in the repo. Small-screen header gap, 44px targets, contact clipping, the gate reset target, and menu scrolling are the retained pieces from PR #1. The agents code sample wraps instead of widening the page.
+- **Sections:** `#product` after command, `#engineering` after principles, `#company` after rollout and before the film. “Explore the Demo” under the film uses `SITE.demoUrl`. The artifact URL returned HTTP 200 and Claude’s “Page not found”, so the line under the film is the simulated-demo sentence.
+- **Evidence:** `docs/CAPABILITY-AUDIT.md`. Statuses are tested in `src/lib/capabilities.test.ts`.
+- **Deployment approval:** Not requested. Production was not modified.
+
 ## 2026-10-08 — Hero labels and the ASTRA film section
 
 - **Branch:** `astra-v2`. Not merged. `main` was not pushed.

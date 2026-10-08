@@ -48,6 +48,44 @@
   color: var(--mute);
 }
 
+.support {
+  max-width: 68ch;
+  margin-top: 18px;
+  font-size: var(--fs-small);
+  line-height: 1.5;
+  color: var(--mute);
+}
+
+.demo {
+  position: relative;
+  display: inline-block;
+  margin-top: 14px;
+  font-size: 0.9375rem;
+  color: var(--bone);
+  white-space: nowrap;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 100% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  padding-bottom: 2px;
+  transition: background-size 0.5s var(--ease-out);
+}
+.demo:hover {
+  background-size: 0% 1px;
+  background-position: 100% 100%;
+}
+
+@media (max-width: 767px) {
+  .demo::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -12px;
+    bottom: -12px;
+  }
+}
+
 .download {
   color: var(--bone);
   text-decoration: underline;
