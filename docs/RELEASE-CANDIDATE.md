@@ -124,11 +124,21 @@ Every `href` in the rendered page, including the open menu:
 
 CI run [37787318275](https://github.com/udayfulkatwar/astra-website/actions/runs/37787318275) for `168e10b` uploaded `astra-preview` (31,760,844 bytes, not expired). It is a zip of `dist/` on the Actions run. It is not a GitHub Pages deployment. `deploy.yml` and the Pages settings were not changed. Later doc-only commits upload another zip of the same site. Download `astra-preview` from the latest successful CI run on `astra-v2`.
 
+## Film player
+
+Google Chrome 148.0.7778.96 reports `canPlayType('video/mp4; codecs="avc1.640028, mp4a.40.2"')` as `probably`. The error line was not a missing H.264 codec.
+
+The old handler treated every `error` event as a failed film. At 1440 the 720p `<source media="(max-width: 900px)">` fires `error` on itself when the query does not match. That event reaches the video’s React handler. At that moment `video.error` is null, `networkState` is `NETWORK_IDLE`, `readyState` is 0, and the only film request is the poster. The handler now reads the video element: it shows the line only when `video.error` is set and is not `MEDIA_ERR_ABORTED`, or when `networkState` is `NETWORK_NO_SOURCE`.
+
+Before play, the painted frame matches `astra-launch-film-poster.webp` (SSIM 0.867 against the file, which itself matches the 48-second wordmark at SSIM 0.996). It does not match the film at 20s or 40s (SSIM about 0.50 and 0.54). No MP4 is requested until play. The earlier “Trade Approval Center at 0:00” description does not match those pixels.
+
+After play, in the same Chrome: 1440 loads `astra-launch-film-1080p.mp4` with HTTP 206 (`bytes 0-22187488/22187489`) and reaches 20.05s with no error line. 390 loads `astra-launch-film-720p.mp4` with HTTP 206 (`bytes 0-8696214/8696215`) and reaches 20.19s with no error line. Tab from the film reaches the player, then “Explore the Demo”, not “Download the film”. The fallback link is omitted when the browser can play MP4. `?filmFail=1` points the sources at a missing file; after play the line “The film could not be loaded. Download the film.” appears, and that link is visible.
+
 ## Tests
 
 | Check | Result |
 | --- | --- |
-| `npm test` | PASS. 19/19. The hero has no “Click for demo”. `demoPublic` is `true`, and the film line is the dashboard sentence. |
+| `npm test` | PASS. 20/20. The hero has no “Click for demo”. `demoPublic` is `true`. A skipped source or an aborted preload is not a film failure. |
 | `npm run lint` | PASS. Exit 0. Existing warnings only. |
 | `npm run build` | PASS |
 | Hero is Trade Gate, Meet ASTRA, Watch the video, at 7 widths | PASS. Headless Chrome. “Click for demo” is absent. Those shots were taken before the film CTA was turned back on. |
@@ -147,6 +157,11 @@ CI run [37787318275](https://github.com/udayfulkatwar/astra-website/actions/runs
 | `CNAME`, deploy workflow, robots, sitemap vs `main` | PASS. No diff. |
 | Rendered hrefs | PASS. Table above. |
 | Pages preview deployment | NOT APPLICABLE. Not requested, and Pages settings were not changed. |
+| Film codec | PASS. Chrome 148, H.264 `probably`. Not the cause of the error line. |
+| Film poster before play, 1440 and 390 | PASS. Poster WebP only. No error line. No MP4 request. |
+| Film playback, 1440 and 390 | PASS. 1080p at 1440 and 720p at 390, each HTTP 206. No error line at 20s. |
+| Film failure | PASS. `?filmFail=1`, after play, shows “The film could not be loaded. Download the film.” |
+| Download link in the tab order | PASS. Absent while the film can play. The visible link is only in the failure line. |
 | Widths under 500px | Device emulation. This environment cannot open a real window that small. |
 
 ## Known limits
@@ -155,7 +170,6 @@ CI run [37787318275](https://github.com/udayfulkatwar/astra-website/actions/runs
 - Edge and Safari were not run.
 - Performance numbers are one headless machine, two samples, with no network throttling. The first `main` desktop TBT sample is noisy.
 - “Meet ASTRA” still scrolls to `#pipeline`. That wording was accepted earlier.
-- The film element’s fallback “Download the film” link is in the tab order at zero size. It is not visible.
 
 ## Rollback
 

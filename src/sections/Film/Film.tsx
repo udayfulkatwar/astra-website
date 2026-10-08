@@ -1,8 +1,16 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type SyntheticEvent } from 'react'
 import { scrollToTarget, useLenis } from '../../components/SmoothScroll/SmoothScroll'
 import { demoIsPublic, SITE } from '../../lib/content'
 import { store } from '../../lib/store'
-import { FILM, chooseFilmFile, compactMediaQuery, DEMO_SUPPORT, readSaveData } from './filmSource'
+import {
+  browserCanPlayFilm,
+  FILM,
+  chooseFilmFile,
+  compactMediaQuery,
+  DEMO_SUPPORT,
+  filmPlaybackFailed,
+  readSaveData,
+} from './filmSource'
 import styles from './Film.module.css'
 
 /**
@@ -13,8 +21,29 @@ import styles from './Film.module.css'
 export function Film() {
   const lenis = useLenis()
   const [saveData] = useState(readSaveData)
+  const [canPlay] = useState(browserCanPlayFilm)
   const [failed, setFailed] = useState(false)
+  const forceFail = new URLSearchParams(window.location.search).get('filmFail') === '1'
   const forceCompact = chooseFilmFile({ width: window.innerWidth, saveData }) === '720' && saveData
+  const compactSrc = forceFail ? '/media/film/missing.mp4' : FILM.compact
+  const masterSrc = forceFail ? '/media/film/missing.mp4' : FILM.master
+
+  const onFilmError = (event: SyntheticEvent<HTMLVideoElement>) => {
+    const video = event.currentTarget
+    const consider = () => {
+      if (
+        filmPlaybackFailed({
+          errorCode: video.error?.code ?? null,
+          networkState: video.networkState,
+        })
+      ) {
+        setFailed(true)
+      }
+    }
+    consider()
+    // The video element can update networkState just after a child source event.
+    requestAnimationFrame(consider)
+  }
 
   useEffect(() => {
     const onPop = () => {
@@ -65,28 +94,30 @@ export function Film() {
             height={1080}
             aria-label={FILM.label}
             title={FILM.label}
-            src={forceCompact ? FILM.compact : undefined}
-            onError={() => setFailed(true)}
+            src={forceCompact ? compactSrc : undefined}
+            onError={onFilmError}
           >
             {forceCompact ? null : (
               <>
-                <source src={FILM.compact} type="video/mp4" media={compactMediaQuery} />
-                <source src={FILM.master} type="video/mp4" />
+                <source src={compactSrc} type="video/mp4" media={compactMediaQuery} />
+                <source src={masterSrc} type="video/mp4" />
               </>
             )}
-            <p>
-              Your browser cannot play this film.{' '}
-              <a className={styles.download} href={FILM.master}>
-                Download the film
-              </a>
-              .
-            </p>
+            {canPlay ? null : (
+              <p>
+                Your browser cannot play this film.{' '}
+                <a className={styles.download} href={masterSrc}>
+                  Download the film
+                </a>
+                .
+              </p>
+            )}
           </video>
         </div>
         {failed && (
           <p className={styles.error} role="status">
             The film could not be loaded.{' '}
-            <a className={styles.download} href={FILM.master}>
+            <a className={styles.download} href={masterSrc}>
               Download the film
             </a>
             .

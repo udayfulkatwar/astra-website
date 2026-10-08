@@ -1,5 +1,11 @@
 # Change log
 
+## 2026-10-08 — Film error line only after a real failure
+
+- **Branch:** `astra-v2`. Not merged. `main` was not pushed.
+- **Film:** A skipped 720p `<source>` was firing `error` before any MP4 request. The “could not be loaded” line now waits for the video element’s own error, or `NETWORK_NO_SOURCE`. Chrome 148 can play H.264. Before play, only the wordmark poster is fetched. The in-player download link is not in the tab order when the browser can play the film.
+- **Deployment approval:** Not requested. Production was not modified.
+
 ## 2026-10-08 — Film demo link shown
 
 - **Branch:** `astra-v2`. Not merged. `main` was not pushed.

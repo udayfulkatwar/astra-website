@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
-import { FILM, chooseFilmFile, compactMediaQuery, DEMO_SUPPORT, filmHref } from './filmSource.ts'
+import { FILM, chooseFilmFile, compactMediaQuery, DEMO_SUPPORT, filmHref, filmPlaybackFailed } from './filmSource.ts'
 
 test('wide screens keep the master unless save-data is on', () => {
   assert.equal(chooseFilmFile({ width: 901, saveData: false }), '1080')
@@ -28,4 +28,12 @@ test('the film anchor and the disclosure stay exact', () => {
   assert.equal(FILM.master, '/media/film/astra-launch-film-1080p.mp4')
   assert.equal(FILM.compact, '/media/film/astra-launch-film-720p.mp4')
   assert.equal(DEMO_SUPPORT, 'Explore the ASTRA dashboard and available product workflows.')
+})
+
+test('a skipped source or an aborted preload is not a film failure', () => {
+  assert.equal(filmPlaybackFailed({ errorCode: 1, networkState: 1 }), false)
+  assert.equal(filmPlaybackFailed({ errorCode: null, networkState: 1 }), false)
+  assert.equal(filmPlaybackFailed({ errorCode: 4, networkState: 3 }), true)
+  assert.equal(filmPlaybackFailed({ errorCode: 2, networkState: 1 }), true)
+  assert.equal(filmPlaybackFailed({ errorCode: null, networkState: 3 }), true)
 })
