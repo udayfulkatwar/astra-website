@@ -201,3 +201,8 @@
     height: 44px;
   }
 }
+@media (max-width: 340px) {
+  .access {
+    padding: 0 8px;
+  }
+}
