@@ -6,6 +6,7 @@
 - **Hero:** “Click for demo” is removed. The row is Trade Gate, Meet ASTRA, Watch the video.
 - **Demo:** `SITE.demoUrl` is unchanged. `SITE.demoPublic` is `false`, so the film does not render “Explore the Demo” or its supporting line. The private artifact still answers HTTP 200 with Claude’s “Page not found” when logged out.
 - **Preview:** CI uploads the `dist/` build as the `astra-preview` artifact. The Pages deploy workflow, `public/CNAME`, `robots.txt`, and `sitemap.xml` were not changed.
+- **Tests performed:** `npm test` (19/19), `npm run lint` (exit 0, existing warnings), `npm run build`. Headless Chrome and Firefox 157 at seven widths, full-page shots, hero and footer pairs against https://astragrp.net/, a lab LCP/CLS/TBT comparison with `main`, a `dist/` secret scan, and a rendered-link check. The write-up is `docs/RELEASE-CANDIDATE.md`.
 - **Deployment approval:** Not requested. Production was not modified.
 
 ## 2026-10-08 — Product, about, engineering, and the demo link
