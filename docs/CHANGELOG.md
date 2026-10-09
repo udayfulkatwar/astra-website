@@ -1,5 +1,11 @@
 # Change log
 
+## 2026-10-09 — Leadership section
+
+- **Branch:** `leadership-section`, from `main` at `e572b0d`. Not merged. `main` was not pushed. Production was not modified. The Deploy workflow was not run.
+- **About:** `#company` keeps its anchor, scroll margin, and mission block. A leadership group, “The People Behind ASTRA”, shows Uday Fulkatwar, Founder, and Vivek Chaudhary, Co-Founder, with monogram initials and the existing project-leadership denial. Bios, quotes, and profile links are empty and not rendered. A shared-commitment list covers risk discipline, evidence, transparency, and responsible AI development. No new corporate facts.
+- **Deployment approval:** Not requested.
+
 ## 2026-10-09 — First click and menu anchors
 
 - **Branch:** `fix/first-click-scroll`, from `main` at `e572b0d`. Not merged. `main` was not pushed. Production was not modified. The Deploy workflow was not run.
