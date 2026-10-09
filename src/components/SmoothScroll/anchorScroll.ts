@@ -1,6 +1,16 @@
-export const ANCHOR_SCROLL_SECONDS = 1.8
+/** Long jumps stay under about 1.2s. Short hops are quicker. The curve is unchanged. */
+export const ANCHOR_SCROLL_MAX_SECONDS = 1.15
+export const ANCHOR_SCROLL_MIN_SECONDS = 0.32
 
 export const anchorEase = (t: number) => 1 - Math.pow(1 - t, 4)
+
+/** Seconds for an anchor jump. Distance is in CSS pixels. The cap is the same for every long jump. */
+export function anchorScrollSeconds(distancePx: number) {
+  const distance = Math.abs(Number.isFinite(distancePx) ? distancePx : 0)
+  const scaled = ANCHOR_SCROLL_MIN_SECONDS + distance / 3800
+  const capped = Math.min(ANCHOR_SCROLL_MAX_SECONDS, Math.max(ANCHOR_SCROLL_MIN_SECONDS, scaled))
+  return Math.round(capped * 1000) / 1000
+}
 
 /** The slice of Lenis this module needs. The real instance satisfies it. */
 export interface AnchorDriver {
@@ -53,18 +63,37 @@ export function planAnchorScroll(input: {
   return 'scroll'
 }
 
-/** Settled clicks keep the previous options so the landing distance does not change. */
-export function settledScrollOptions() {
-  return { duration: ANCHOR_SCROLL_SECONDS, easing: anchorEase }
+/** How far the viewport must travel. A missing document (unit tests) reports 0. */
+export function readAnchorDistance(target: string | number) {
+  if (typeof target === 'number') {
+    const y = typeof window === 'undefined' ? 0 : window.scrollY
+    return target - y
+  }
+  if (typeof document === 'undefined') return 0
+  const el = document.querySelector(target)
+  if (!(el instanceof Element)) return 0
+  const margin = Number.parseFloat(getComputedStyle(el).scrollMarginTop)
+  const inset = Number.isNaN(margin) ? 0 : margin
+  return el.getBoundingClientRect().top - inset
 }
 
-export function queuedScrollOptions(onComplete?: () => void) {
+/** Settled clicks keep the same easing and the same destination. Duration scales with distance. */
+export function settledScrollOptions(distancePx = 0) {
+  return { duration: anchorScrollSeconds(distancePx), easing: anchorEase }
+}
+
+export function queuedScrollOptions(distancePx = 0, onComplete?: () => void) {
   return {
-    duration: ANCHOR_SCROLL_SECONDS,
+    duration: anchorScrollSeconds(distancePx),
     easing: anchorEase,
     force: true as const,
     onComplete,
   }
+}
+
+/** The loader still owns the scroll lock until the intro finishes. */
+export function shouldRestartScrollOnMenuClose(introDone: boolean) {
+  return introDone
 }
 
 export type LockedAnchor = 'native' | 'queued' | 'deferred'
@@ -95,7 +124,7 @@ export function flushQueuedAnchor(driver: AnchorDriver, onComplete?: (target: st
   if (target == null) return null
   if (driver.isStopped) driver.start()
   driver.resize()
-  driver.scrollTo(target, queuedScrollOptions(() => onComplete?.(target)))
+  driver.scrollTo(target, queuedScrollOptions(readAnchorDistance(target), () => onComplete?.(target)))
   return target
 }
 

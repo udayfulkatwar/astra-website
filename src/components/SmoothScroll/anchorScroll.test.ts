@@ -1,14 +1,18 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
 import {
+  ANCHOR_SCROLL_MAX_SECONDS,
   anchorNeedsCorrection,
+  anchorScrollSeconds,
   beginLockedAnchor,
   consumeAnchor,
   flushQueuedAnchor,
   pendingAnchor,
   planAnchorScroll,
+  queuedScrollOptions,
   rememberAnchor,
   settledScrollOptions,
+  shouldRestartScrollOnMenuClose,
   type AnchorDriver,
 } from './anchorScroll.ts'
 
@@ -68,8 +72,11 @@ test('queued menu and intro clicks start Lenis before the forced scroll', () => 
   assert.equal(flushed, '#product')
   assert.deepEqual(calls, ['start', 'resize', 'scrollTo'])
   assert.equal((scrollOptions[0] as { force?: boolean }).force, true)
+  assert.ok((scrollOptions[0] as { duration: number }).duration <= ANCHOR_SCROLL_MAX_SECONDS)
   assert.equal(fake.isStopped, false)
   assert.equal('force' in settledScrollOptions(), false)
+  assert.equal(queuedScrollOptions(9000).force, true)
+  assert.equal(queuedScrollOptions(9000).duration, ANCHOR_SCROLL_MAX_SECONDS)
   assert.equal(flushQueuedAnchor(fake), null)
 
   const locked = driver(true)
@@ -93,6 +100,18 @@ test('queued menu and intro clicks start Lenis before the forced scroll', () => 
     beginLockedAnchor(null, '#gate', { reducedMotion: false, introDone: true }),
     'native',
   )
+})
+
+test('anchor duration scales with distance and long jumps stay within 1.2s', () => {
+  assert.equal(anchorScrollSeconds(0), 0.32)
+  assert.ok(anchorScrollSeconds(400) > anchorScrollSeconds(0))
+  assert.ok(anchorScrollSeconds(400) < anchorScrollSeconds(2500))
+  assert.equal(anchorScrollSeconds(20000), ANCHOR_SCROLL_MAX_SECONDS)
+  assert.ok(ANCHOR_SCROLL_MAX_SECONDS <= 1.2)
+  assert.ok(ANCHOR_SCROLL_MAX_SECONDS >= 1)
+  assert.equal(settledScrollOptions(20000).duration, ANCHOR_SCROLL_MAX_SECONDS)
+  assert.equal(shouldRestartScrollOnMenuClose(false), false)
+  assert.equal(shouldRestartScrollOnMenuClose(true), true)
 })
 
 test('a landing more than 8px off its scroll margin needs another measure', () => {

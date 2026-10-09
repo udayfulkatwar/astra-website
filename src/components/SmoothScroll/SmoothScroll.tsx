@@ -10,6 +10,7 @@ import {
   flushQueuedAnchor,
   pendingAnchor,
   planAnchorScroll,
+  readAnchorDistance,
   rememberAnchor,
   settledScrollOptions,
   type AnchorDriver,
@@ -80,16 +81,16 @@ function armDriftCorrection(driver: AnchorDriver, target: string | number) {
   }
 }
 
-function scheduleAnchorFlush(driver: AnchorDriver, generation: number) {
+function scheduleAnchorFlush(driver: AnchorDriver, generation: number, waitForFonts = true) {
   if (flushScheduled) return
   flushScheduled = true
   void (async () => {
     await nextFrame()
-    await settleLayout()
+    if (waitForFonts) await settleLayout()
     flushScheduled = false
     if (generation !== epoch) return
     flushQueuedAnchor(driver, (target) => armDriftCorrection(driver, target))
-    if (pendingAnchor() != null) scheduleAnchorFlush(driver, generation)
+    if (pendingAnchor() != null) scheduleAnchorFlush(driver, generation, waitForFonts)
   })()
 }
 
@@ -166,8 +167,15 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
     const generation = epoch
     const afterIntro = () => {
       l.start()
-      if (pendingAnchor() != null) scheduleAnchorFlush(l, generation)
-      else void followHash(l, isCancelled)
+      if (pendingAnchor() != null) {
+        scheduleAnchorFlush(l, generation)
+        return
+      }
+      if (document.getElementById('site-menu')) {
+        l.stop()
+        return
+      }
+      void followHash(l, isCancelled)
     }
     if (!store.introDone) l.stop()
     const offReveal = on('introReveal', afterReveal)
@@ -207,7 +215,7 @@ export function scrollToTarget(lenis: Lenis | null, target: string | number) {
     return
   }
   driftCleanup()
-  lenis!.scrollTo(target, settledScrollOptions())
+  lenis!.scrollTo(target, settledScrollOptions(readAnchorDistance(target)))
 }
 
 /**
@@ -222,5 +230,5 @@ export function releaseLockedScroll(lenis: Lenis | null, target: string | number
     introDone: store.introDone,
   })
   if (begun === 'native') nativeScroll(target)
-  else if (begun === 'queued') scheduleAnchorFlush(lenis as AnchorDriver, epoch)
+  else if (begun === 'queued') scheduleAnchorFlush(lenis as AnchorDriver, epoch, false)
 }

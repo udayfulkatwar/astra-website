@@ -18,13 +18,8 @@
   overscroll-behavior: contain;
 }
 
-.mask {
-  overflow: hidden;
-  padding-bottom: 0.06em;
-}
-
 .big {
-  display: inline-block;
+  display: block;
   font-size: clamp(2.8rem, 7.5vw, 7.5rem);
   font-stretch: 118%;
   font-weight: 460;

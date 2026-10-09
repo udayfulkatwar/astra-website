@@ -4,8 +4,9 @@
 
 - **Branch:** `fix/first-click-scroll`, from `main` at `e572b0d`. Not merged. `main` was not pushed. Production was not modified. The Deploy workflow was not run.
 - **First click:** During the loader curtain the nav is already clickable while Lenis is stopped (`html` is `overflow: clip`). `scrollTo` then returns without moving. Those clicks are kept and run after the intro unlocks, measured on a later frame.
-- **Menu:** Opening the site menu stops Lenis. A link now unlocks it before scrolling, instead of calling `scrollTo` on a timer while the lock may still be held. Focus return does not scroll the page.
-- **Unchanged:** Settled clicks use the same Lenis duration and easing. Scroll margins are unchanged. Deep links and reduced motion are unchanged.
+- **Menu:** Opening the site menu stops Lenis. A link now unlocks it before scrolling, instead of calling `scrollTo` on a timer while the lock may still be held. Focus return does not scroll the page. The links sit in their final position when the dialog opens, so a click during the short fade hits the row. The fade is 140ms and the close is 80ms, and the closing layer ignores pointer events. The menu button and the dialog sit above the loader, so the menu can open while the intro is still playing. A destination chosen then is kept until the intro unlocks. Closing the menu does not start Lenis before that unlock.
+- **Anchor timing:** Lenis anchor jumps scale with distance and stop at 1.15s. The easing and the destination are unchanged. A menu choice starts that jump on the next frame, so the page is already moving when the dialog fades.
+- **Unchanged:** Scroll margins are unchanged. Deep links and reduced motion are unchanged.
 - **Deployment approval:** Not requested.
 
 ## 2026-10-09 — Credibility upgrade

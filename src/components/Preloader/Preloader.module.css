@@ -1,7 +1,8 @@
 .preloader {
   position: fixed;
   inset: 0;
-  z-index: 120;
+  /* Below the header (100) and the site menu (95) so the menu can open during the loader. */
+  z-index: 94;
   background: var(--void);
   color: var(--bone);
   clip-path: inset(0% 0% 0% 0%);
