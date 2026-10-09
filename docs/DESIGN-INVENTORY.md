@@ -146,7 +146,7 @@ Measured hero “Try the gate” box: 130×52 at 1440 and 1920, 118×46 at 768 a
 | Pattern | Existing value | Source | Reuse |
 | --- | --- | --- | --- |
 | Lenis | lerp 0.085, wheel 0.95, touch 1.4. Not created when reduced motion is on | `SmoothScroll.tsx` | Already wraps the app |
-| Anchor scroll | `scrollToTarget`: Lenis 1.8s, ease `1 - (1 - t) ** 4`. Otherwise `scrollIntoView` / `scrollTo`. No offset argument | `SmoothScroll.tsx` | Reuse for any new anchor |
+| Anchor scroll | `scrollToTarget`: Lenis duration scales with distance, capped at 1.15s, ease `1 - (1 - t) ** 4`. Otherwise `scrollIntoView` / `scrollTo`. No offset argument | `SmoothScroll.tsx` | Reuse for any new anchor |
 | Scroll margin | `0px` on the first content section, measured | computed style | There is no header offset today. A new section should use the same behaviour |
 | Header hide-on-scroll | none. `data-scrolled` only fades in a top gradient after `scrollY > 40` | `Navigation.tsx` | Do not hide the bar |
 | Hero | GSAP scrub through four text states. Height `560svh`, `500svh` under 767px or a portrait aspect | `Hero.tsx`, `Hero.module.css` | Do not add another pinned scene for a film |

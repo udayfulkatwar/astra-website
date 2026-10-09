@@ -4,14 +4,22 @@ import Lenis from 'lenis'
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react'
 import { deepLinkSelector } from '../../lib/deepLink'
 import { on, store } from '../../lib/store'
+import {
+  anchorNeedsCorrection,
+  beginLockedAnchor,
+  flushQueuedAnchor,
+  pendingAnchor,
+  planAnchorScroll,
+  readAnchorDistance,
+  rememberAnchor,
+  settledScrollOptions,
+  type AnchorDriver,
+} from './anchorScroll'
 
 gsap.registerPlugin(ScrollTrigger)
 
 const LenisContext = createContext<Lenis | null>(null)
 export const useLenis = () => useContext(LenisContext)
-
-const anchorEase = (t: number) => 1 - Math.pow(1 - t, 4)
-const ANCHOR_SCROLL_SECONDS = 1.8
 
 function nextFrame() {
   return new Promise<void>((resolve) => requestAnimationFrame(() => resolve()))
@@ -26,6 +34,64 @@ async function settleLayout() {
   }
   await nextFrame()
   await nextFrame()
+}
+
+let flushScheduled = false
+let epoch = 0
+let driftCleanup = () => {}
+
+function nativeScroll(target: string | number) {
+  if (typeof target === 'number') window.scrollTo({ top: target })
+  else document.querySelector(target)?.scrollIntoView()
+}
+
+/** After an early or menu scroll, one layout shift can be measured again. A later user scroll is left alone. */
+function armDriftCorrection(driver: AnchorDriver, target: string | number) {
+  driftCleanup()
+  const yAtEnd = window.scrollY
+  let done = false
+  const fix = () => {
+    if (done || typeof target !== 'string') return
+    if (Math.abs(window.scrollY - yAtEnd) > 24) {
+      done = true
+      driftCleanup()
+      return
+    }
+    const id = target.startsWith('#') ? target.slice(1) : ''
+    const el = id ? document.getElementById(id) : null
+    if (!el || driver.isStopped) return
+    const margin = Number.parseFloat(getComputedStyle(el).scrollMarginTop)
+    const expected = Number.isNaN(margin) ? 0 : margin
+    if (!anchorNeedsCorrection(el.getBoundingClientRect().top, expected)) return
+    done = true
+    driftCleanup()
+    driver.resize()
+    driver.scrollTo(target, { immediate: true, force: true })
+  }
+  const ro = new ResizeObserver(() => fix())
+  ro.observe(document.documentElement)
+  const timer = window.setTimeout(() => {
+    ro.disconnect()
+    fix()
+  }, 2000)
+  driftCleanup = () => {
+    done = true
+    ro.disconnect()
+    window.clearTimeout(timer)
+  }
+}
+
+function scheduleAnchorFlush(driver: AnchorDriver, generation: number, waitForFonts = true) {
+  if (flushScheduled) return
+  flushScheduled = true
+  void (async () => {
+    await nextFrame()
+    if (waitForFonts) await settleLayout()
+    flushScheduled = false
+    if (generation !== epoch) return
+    flushQueuedAnchor(driver, (target) => armDriftCorrection(driver, target))
+    if (pendingAnchor() != null) scheduleAnchorFlush(driver, generation, waitForFonts)
+  })()
 }
 
 function hashSelector() {
@@ -98,8 +164,17 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
     const afterReveal = () => {
       void followHash(l, isCancelled)
     }
+    const generation = epoch
     const afterIntro = () => {
       l.start()
+      if (pendingAnchor() != null) {
+        scheduleAnchorFlush(l, generation)
+        return
+      }
+      if (document.getElementById('site-menu')) {
+        l.stop()
+        return
+      }
       void followHash(l, isCancelled)
     }
     if (!store.introDone) l.stop()
@@ -110,6 +185,8 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
     if (new URLSearchParams(location.search).has('debug')) (window as unknown as { __lenis: Lenis }).__lenis = l
     return () => {
       cancelled = true
+      epoch += 1
+      driftCleanup()
       offReveal()
       off()
       gsap.ticker.remove(tick)
@@ -123,10 +200,35 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
 
 /** Scroll to an anchor with Lenis when available, natively otherwise. */
 export function scrollToTarget(lenis: Lenis | null, target: string | number) {
-  if (lenis) {
-    lenis.scrollTo(target, { duration: ANCHOR_SCROLL_SECONDS, easing: anchorEase })
+  const plan = planAnchorScroll({
+    reducedMotion: store.reducedMotion,
+    hasDriver: lenis != null,
+    introDone: store.introDone,
+    stopped: lenis?.isStopped ?? false,
+  })
+  if (plan === 'native') {
+    nativeScroll(target)
     return
   }
-  if (typeof target === 'number') window.scrollTo({ top: target })
-  else document.querySelector(target)?.scrollIntoView()
+  if (plan === 'queue') {
+    rememberAnchor(target)
+    return
+  }
+  driftCleanup()
+  lenis!.scrollTo(target, settledScrollOptions(readAnchorDistance(target)))
+}
+
+/**
+ * Scroll from the menu. The overlay has Lenis stopped, so a scroll in that same
+ * turn is ignored. Unlock first and measure on a later frame, once overflow:clip
+ * has cleared. A click before the intro ends waits for the loader instead.
+ */
+export function releaseLockedScroll(lenis: Lenis | null, target: string | number) {
+  driftCleanup()
+  const begun = beginLockedAnchor(lenis, target, {
+    reducedMotion: store.reducedMotion,
+    introDone: store.introDone,
+  })
+  if (begun === 'native') nativeScroll(target)
+  else if (begun === 'queued') scheduleAnchorFlush(lenis as AnchorDriver, epoch, false)
 }
