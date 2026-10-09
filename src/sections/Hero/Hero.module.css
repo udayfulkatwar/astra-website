@@ -136,76 +136,6 @@
   background-position: 100% 100%;
 }
 
-/* ---------- agent log ---------- */
-
-.log {
-  position: absolute;
-  right: var(--pad-x);
-  bottom: clamp(24px, 4vh, 48px);
-  width: min(360px, 28vw);
-  padding: 14px 16px 16px;
-}
-
-.logHead {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-bottom: 10px;
-  margin-bottom: 10px;
-  border-bottom: 1px solid var(--line);
-  color: var(--bone);
-}
-.logNote {
-  color: var(--faint);
-}
-
-.logLines {
-  display: grid;
-  gap: 7px;
-  min-height: 112px;
-  font-family: var(--mono);
-  font-size: var(--fs-micro);
-  line-height: 1.4;
-  color: var(--mute);
-}
-
-.logLine {
-  display: grid;
-  grid-template-columns: 5.6rem 1fr;
-  gap: 10px;
-  animation: logIn 0.5s var(--ease-out) both;
-}
-.logKey {
-  color: var(--faint);
-}
-.logLine[data-tone='pass'] > span:last-child {
-  color: var(--pass);
-}
-.logLine[data-tone='ember'] > span:last-child {
-  color: var(--ember);
-}
-.logLine[data-tone='lilac'] > span:last-child {
-  color: var(--lilac);
-}
-@keyframes logIn {
-  from {
-    opacity: 0;
-    transform: translateY(6px);
-  }
-}
-
-.caret {
-  width: 7px;
-  height: 12px;
-  background: var(--bone);
-  animation: blink 1s steps(2) infinite;
-}
-@keyframes blink {
-  50% {
-    opacity: 0;
-  }
-}
-
 .hint {
   position: absolute;
   left: 50%;
@@ -248,9 +178,6 @@
 @media (max-width: 1100px) {
   .copy {
     width: min(58vw, 640px);
-  }
-  .log {
-    display: none;
   }
 }
 
@@ -308,7 +235,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   .statusDot,
-  .caret,
   .hintLine::after {
     animation: none;
   }

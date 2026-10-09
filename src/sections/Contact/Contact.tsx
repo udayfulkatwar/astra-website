@@ -114,9 +114,6 @@ export function Contact({ webgl }: { webgl: boolean }) {
 
       <footer className={styles.footer}>
         <div className={styles.footCol}>
-          <span className="mono" style={{ color: 'var(--faint)' }}>
-            market sessions · approx.
-          </span>
           <MarketSessions className={styles.sessions} />
         </div>
         <p className={styles.disclaimer}>{DISCLAIMER}</p>

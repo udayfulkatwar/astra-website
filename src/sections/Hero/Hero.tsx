@@ -6,7 +6,6 @@ import { scrollToTarget, useLenis } from '../../components/SmoothScroll/SmoothSc
 import { SplitLines } from '../../components/SplitLines/SplitLines'
 import { FILM, filmHref } from '../Film/filmSource'
 import { emit, on, store } from '../../lib/store'
-import { AgentLog } from './AgentLog'
 import styles from './Hero.module.css'
 
 const STATES = [
@@ -181,7 +180,6 @@ export function Hero() {
             </div>
           ))}
         </div>
-        <AgentLog />
         <div ref={hint} className={styles.hint} aria-hidden="true">
           <span className="mono">scroll</span>
           <span className={styles.hintLine} />

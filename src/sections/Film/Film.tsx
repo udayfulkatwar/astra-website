@@ -1,6 +1,7 @@
 import { useEffect, useState, type SyntheticEvent } from 'react'
-import { scrollToTarget, useLenis } from '../../components/SmoothScroll/SmoothScroll'
+import { releaseLockedScroll, scrollToTarget, useLenis } from '../../components/SmoothScroll/SmoothScroll'
 import { demoIsPublic, SITE } from '../../lib/content'
+import { hashScrollTarget } from '../../lib/deepLink'
 import { store } from '../../lib/store'
 import {
   browserCanPlayFilm,
@@ -47,17 +48,21 @@ export function Film() {
 
   useEffect(() => {
     const onPop = () => {
-      const section = document.getElementById(FILM.sectionId)
-      if (location.hash === `#${FILM.sectionId}`) {
-        if (lenis && !store.reducedMotion) scrollToTarget(lenis, `#${FILM.sectionId}`)
-        else section?.scrollIntoView()
-        section?.focus({ preventScroll: true })
+      const target = hashScrollTarget(location.hash, (id) => document.getElementById(id) != null)
+      if (typeof target === 'string') {
+        if (lenis && !store.reducedMotion) scrollToTarget(lenis, target)
+        else document.querySelector(target)?.scrollIntoView()
+        if (target === `#${FILM.sectionId}`) document.getElementById(FILM.sectionId)?.focus({ preventScroll: true })
         return
       }
-      // The page records scroll restoration as manual, so Back would otherwise
-      // stay at the film. Following the film anchor should return to the top.
-      if (lenis) lenis.scrollTo(0, { immediate: true, force: true })
-      else window.scrollTo(0, 0)
+      // Scroll restoration is manual. Back from the film, or from any anchor
+      // whose previous address has no section, returns to the saved position
+      // or the top.
+      const saved = history.state as { y?: unknown } | null
+      const y = saved && typeof saved.y === 'number' ? saved.y : 0
+      if (lenis?.isStopped) releaseLockedScroll(lenis, y)
+      else if (lenis) lenis.scrollTo(y, { immediate: true, force: true })
+      else window.scrollTo(0, y)
     }
     window.addEventListener('popstate', onPop)
     return () => window.removeEventListener('popstate', onPop)

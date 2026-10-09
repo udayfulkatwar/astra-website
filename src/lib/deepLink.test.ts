@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { test } from 'node:test'
-import { deepLinkSelector, hashId } from './deepLink.ts'
+import { deepLinkSelector, hashId, hashScrollTarget } from './deepLink.ts'
 
 const present = new Set([
   'pipeline',
@@ -27,6 +27,15 @@ test('a hash names an existing section, and a missing or empty hash does not', (
   assert.equal(deepLinkSelector('#product', (id) => present.has(id)), '#product')
   assert.equal(deepLinkSelector('#contact', (id) => present.has(id)), '#contact')
   assert.equal(deepLinkSelector('#pipeline', () => false), null)
+})
+
+test('Back follows a real section hash and returns to the top otherwise', () => {
+  const exists = (id: string) => present.has(id) || id === 'top'
+  assert.equal(hashScrollTarget('#company', exists), '#company')
+  assert.equal(hashScrollTarget('#astra-film', exists), '#astra-film')
+  assert.equal(hashScrollTarget('#top', exists), '#top')
+  assert.equal(hashScrollTarget('', exists), 0)
+  assert.equal(hashScrollTarget('#missing', exists), 0)
 })
 
 test('contact shares the header scroll margin, and nav sections that had none stay clear of it', () => {

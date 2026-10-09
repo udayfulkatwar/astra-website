@@ -20,6 +20,7 @@
 }
 
 .card {
+  opacity: 1;
   height: 100%;
   min-width: 0;
   display: flex;
@@ -203,7 +204,8 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .card {
-    animation: company-rise 0.7s var(--ease-out) both;
+    /* No fill mode. A skipped or cancelled rise returns to the opaque card. */
+    animation: company-rise 0.7s var(--ease-out);
   }
 
   .people > li:nth-child(2) .card {
@@ -223,6 +225,7 @@
 @media (prefers-reduced-motion: reduce) {
   .card,
   .card:hover {
+    opacity: 1;
     animation: none;
     transition: none;
     transform: none;
