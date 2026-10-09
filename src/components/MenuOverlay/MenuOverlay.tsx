@@ -3,8 +3,9 @@ import { useEffect, useRef } from 'react'
 import { MarketSessions } from '../LocalTime/MarketSessions'
 import { releaseLockedScroll, useLenis } from '../SmoothScroll/SmoothScroll'
 import { shouldRestartScrollOnMenuClose } from '../SmoothScroll/anchorScroll'
+import { SITE } from '../../lib/content'
 import { store } from '../../lib/store'
-import { MENU_ACCESS, MENU_ITEMS } from './menuItems'
+import { MENU_DEMO, MENU_ITEMS, MENU_POLICIES } from './menuItems'
 import { MENU_EXIT_SECONDS, MENU_REVEAL_SECONDS } from './menuMotion'
 import styles from './MenuOverlay.module.css'
 
@@ -138,17 +139,30 @@ export function MenuOverlay({ open, onClose }: { open: boolean; onClose: () => v
               </nav>
             </div>
             <a
-              className={styles.cta}
-              href={MENU_ACCESS.href}
-              onClick={(e) => {
-                e.preventDefault()
-                go(MENU_ACCESS.href)
-              }}
+              className={styles.demo}
+              href={SITE.demoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => onClose()}
             >
-              {MENU_ACCESS.label}
+              <span>{MENU_DEMO.label}</span>
+              <span className={styles.demoNote} aria-hidden="true">
+                {MENU_DEMO.note}
+              </span>
+              <svg className={styles.demoIcon} viewBox="0 0 12 12" aria-hidden="true">
+                <path d="M3.5 8.5 8.5 3.5M5 3.5h3.5V7" fill="none" stroke="currentColor" strokeWidth="1.2" />
+              </svg>
+              <span className="sr-only">{MENU_DEMO.newTab}</span>
             </a>
             <div className={styles.foot}>
               <MarketSessions className={styles.times} />
+              <nav className={styles.policies} aria-label="Policies">
+                {MENU_POLICIES.map((link) => (
+                  <a key={link.href} href={link.href}>
+                    {link.label}
+                  </a>
+                ))}
+              </nav>
             </div>
           </motion.div>
         </motion.div>
