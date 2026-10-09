@@ -428,6 +428,18 @@ main {
   html.has-cursor label {
     cursor: none;
   }
+
+  /* The custom disc is hidden while the menu is open, so the native pointer comes back. */
+  html.has-cursor[data-menu-open],
+  html.has-cursor[data-menu-open] body,
+  html.has-cursor[data-menu-open] label {
+    cursor: auto;
+  }
+
+  html.has-cursor[data-menu-open] a,
+  html.has-cursor[data-menu-open] button {
+    cursor: pointer;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
