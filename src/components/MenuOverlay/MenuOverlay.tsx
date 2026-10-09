@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useRef } from 'react'
 import { NAV_LINKS } from '../Navigation/Navigation'
-import { scrollToTarget, useLenis } from '../SmoothScroll/SmoothScroll'
+import { releaseLockedScroll, useLenis } from '../SmoothScroll/SmoothScroll'
 import { MarketSessions } from '../LocalTime/MarketSessions'
 import { SITE } from '../../lib/content'
 import styles from './MenuOverlay.module.css'
@@ -32,13 +32,13 @@ export function MenuOverlay({ open, onClose }: { open: boolean; onClose: () => v
       clearTimeout(t)
       window.removeEventListener('keydown', key)
       lenis?.start()
-      prev?.focus?.()
+      prev?.focus?.({ preventScroll: true })
     }
   }, [open, onClose, lenis])
 
   const go = (href: string) => {
     onClose()
-    setTimeout(() => scrollToTarget(lenis, href), 450)
+    releaseLockedScroll(lenis, href)
   }
 
   return (

@@ -1,5 +1,13 @@
 # Change log
 
+## 2026-10-09 — First click and menu anchors
+
+- **Branch:** `fix/first-click-scroll`, from `main` at `e572b0d`. Not merged. `main` was not pushed. Production was not modified. The Deploy workflow was not run.
+- **First click:** During the loader curtain the nav is already clickable while Lenis is stopped (`html` is `overflow: clip`). `scrollTo` then returns without moving. Those clicks are kept and run after the intro unlocks, measured on a later frame.
+- **Menu:** Opening the site menu stops Lenis. A link now unlocks it before scrolling, instead of calling `scrollTo` on a timer while the lock may still be held. Focus return does not scroll the page.
+- **Unchanged:** Settled clicks use the same Lenis duration and easing. Scroll margins are unchanged. Deep links and reduced motion are unchanged.
+- **Deployment approval:** Not requested.
+
 ## 2026-10-09 — Credibility upgrade
 
 - **Branch:** `credibility-upgrade`, from `main` at `41e21e4`. Not merged. `main` was not pushed. Production was not modified. The Deploy workflow was not run.
