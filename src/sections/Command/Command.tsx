@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { useMemo, useState } from 'react'
+import { scrollToTarget, useLenis } from '../../components/SmoothScroll/SmoothScroll'
 import { KILL_SWITCHES } from '../../lib/content'
 import { canTrade, EXAMPLE_PROFILE as P, type AccountHealth } from '../../lib/gate/canTrade'
 import styles from './Command.module.css'
@@ -32,6 +33,7 @@ function blockReason(acct: (typeof ACCOUNTS)[number], on: Record<SwitchId, boole
 const healthTone = (h: AccountHealth) => (h === 'SAFE' ? 'pass' : h === 'CAUTION' ? 'caution' : 'ember')
 
 export function Command() {
+  const lenis = useLenis()
   const [on, setOn] = useState<Record<SwitchId, boolean>>({
     global: false, account: false, strategy: false, instrument: false, execution: false, ai: false, news: false,
   })
@@ -194,6 +196,11 @@ export function Command() {
             )}
           </div>
         </div>
+      </div>
+      <div className={styles.watchRow}>
+        <button type="button" className={styles.watch} onClick={() => scrollToTarget(lenis, '#astra-film')}>
+          Watch Product Video
+        </button>
       </div>
     </section>
   )

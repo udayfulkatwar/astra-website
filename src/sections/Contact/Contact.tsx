@@ -68,15 +68,14 @@ export function Contact({ webgl }: { webgl: boolean }) {
   }
 
   return (
-    <section
+    <div
       ref={root}
       id="contact"
       className={styles.contact}
       data-theme="dark"
       data-webgl={webgl || undefined}
-      aria-labelledby="contact-title"
     >
-      <div className={styles.main}>
+      <section className={styles.main} aria-labelledby="contact-title">
         <span className="tag" data-tone="pass">
           early access · paper mode first
         </span>
@@ -111,7 +110,7 @@ export function Contact({ webgl }: { webgl: boolean }) {
             </button>
           </div>
         </div>
-      </div>
+      </section>
 
       <footer className={styles.footer}>
         <div className={styles.footCol}>
@@ -122,12 +121,17 @@ export function Contact({ webgl }: { webgl: boolean }) {
         </div>
         <p className={styles.disclaimer}>{DISCLAIMER}</p>
         <div className={styles.legal}>
+          <nav className={styles.policies} aria-label="Policies">
+            <a href="/privacy/">Privacy</a>
+            <a href="/terms/">Terms</a>
+            <a href="/risk/">Risk</a>
+          </nav>
           <span>© 2026 ASTRA</span>
           <button type="button" className={styles.link} onClick={() => scrollToTarget(lenis, 0)}>
             Back to top
           </button>
         </div>
       </footer>
-    </section>
+    </div>
   )
 }

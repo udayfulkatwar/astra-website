@@ -1,6 +1,8 @@
 import {
+  ENGINEERING_LATER,
   ENGINEERING_LAYERS,
   ENGINEERING_NOTE,
+  ENGINEERING_NOW,
   ENGINEERING_P1,
   ENGINEERING_P2,
   ENGINEERING_RULE,
@@ -20,6 +22,10 @@ export function Engineering() {
           {ENGINEERING_TITLE}
         </h2>
         <p className="section-intro">{ENGINEERING_P1}</p>
+      </div>
+      <div className={styles.split}>
+        <p className={`panel ${styles.splitCard}`}>{ENGINEERING_NOW}</p>
+        <p className={`panel ${styles.splitCard}`}>{ENGINEERING_LATER}</p>
       </div>
       <p className={styles.follow}>{ENGINEERING_P2}</p>
       <p className={`mono panel ${styles.rule}`}>{ENGINEERING_RULE}</p>

@@ -128,7 +128,7 @@ export function Film() {
           <>
             <p className={styles.support}>{DEMO_SUPPORT}</p>
             <a className={styles.demo} href={SITE.demoUrl} target="_blank" rel="noopener noreferrer">
-              Explore the Demo
+              Launch ASTRA Demo
               <span className="sr-only"> (opens in a new tab)</span>
             </a>
           </>

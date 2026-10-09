@@ -2,7 +2,7 @@
 export const SITE = {
   name: 'ASTRA',
   expansion: 'Autonomous Strategic Trading & Risk Agent',
-  email: 'udayfulkatwar@astragrp.net',
+  email: 'founder@astragrp.net',
   demoUrl: 'https://claude.ai/artifact/7h7cWk7fJHQJHb3tWNVLSr',
   /**
    * Anyone with the link can open the dashboard. A normal browser shows the

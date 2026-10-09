@@ -176,9 +176,38 @@
   transform: rotate(-45deg);
 }
 
-@media (max-width: 1023px) {
+@media (max-width: 1023px) and (min-width: 861px) {
   .version {
     display: none;
+  }
+}
+@media (max-width: 520px) {
+  .logo {
+    display: grid;
+    grid-template-columns: 22px minmax(0, auto);
+    column-gap: 6px;
+    row-gap: 0;
+    align-items: center;
+  }
+  .logo svg {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+  }
+  .wordmark {
+    grid-column: 2;
+    grid-row: 1;
+    font-size: 0.9375rem;
+    line-height: 1.05;
+    white-space: nowrap;
+  }
+  .version {
+    grid-column: 2;
+    grid-row: 2;
+    justify-self: start;
+    font-size: 0.5625rem;
+    line-height: 1.2;
+    padding: 0 5px;
+    white-space: nowrap;
   }
 }
 @media (max-width: 860px) {
@@ -202,7 +231,14 @@
   }
 }
 @media (max-width: 340px) {
+  .header {
+    column-gap: 6px;
+  }
+  .version {
+    font-size: 0.5rem;
+    padding: 0 4px;
+  }
   .access {
-    padding: 0 8px;
+    padding: 0 6px;
   }
 }

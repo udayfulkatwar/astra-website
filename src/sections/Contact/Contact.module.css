@@ -188,8 +188,28 @@
 
 .legal {
   display: flex;
-  gap: 22px;
+  flex-wrap: wrap;
+  gap: 8px 18px;
   justify-content: flex-end;
+  align-items: center;
+}
+
+.policies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+}
+
+.policies a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--bone);
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 100% 1px;
+  background-position: 0 1.15em;
+  background-repeat: no-repeat;
 }
 .link {
   position: relative;

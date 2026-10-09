@@ -1,6 +1,6 @@
 # ASTRA
 
-Public marketing site for **ASTRA**, the Autonomous Strategic Trading & Risk Agent. ASTRA is an AI-powered trading and risk-management platform for prop-firm traders and serious independent traders. It combines market intelligence, automation, real-time risk controls, account monitoring, and human approval safeguards.
+Public marketing site for **ASTRA**, the Autonomous Strategic Trading & Risk Agent. ASTRA is an independent startup project, not yet formally incorporated. It is AI-assisted trading infrastructure and risk-management software, founded in India in September 2026, bootstrapped and self-funded, and under active development.
 
 The page is a single dark command centre. A scroll-driven WebGL armillary is the centrepiece: nine rings, one per validation gate, around an ember core. Below it sit the pipeline, the agent roster, the interactive gate, a command-centre preview, the principles, the rollout, and the request-access section.
 
@@ -27,7 +27,7 @@ Useful query flags: `?tier=high|mid|low` forces a quality tier, `?reduced` simul
 
 ## Contact email
 
-The public address is `udayfulkatwar@astragrp.net`. It lives in one place: `SITE.email` in [`src/lib/content.ts`](src/lib/content.ts). The request-access button and the menu mail link both read that constant.
+The public address is `founder@astragrp.net`. It lives in one place: `SITE.email` in [`src/lib/content.ts`](src/lib/content.ts). The request-access button, the copy button, and the menu mail link all read that constant.
 
 ## Deployment
 

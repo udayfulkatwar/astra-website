@@ -1,7 +1,7 @@
 import { COMPANY_BLOCKS, COMPANY_BODY, COMPANY_TAG, COMPANY_TITLE } from './copy'
 import styles from './Company.module.css'
 
-/** About the project. The wording is the founder's copy, kept verbatim. */
+/** About the project. Names and titles are project leadership, not a corporate filing. */
 export function Company() {
   return (
     <section id="company" className="section" data-theme="dark" aria-labelledby="company-title">

@@ -24,7 +24,7 @@ test('the film demo link is shown and the hero demo link is not', () => {
   assert.equal(DEMO_SUPPORT, 'Explore the ASTRA dashboard and available product workflows.')
   assert.match(FILM, /demoIsPublic\(\)/)
   assert.match(FILM, /href=\{SITE\.demoUrl\}/)
-  assert.match(FILM, /Explore the Demo/)
+  assert.match(FILM, /Launch ASTRA Demo/)
   assert.equal(FILM.includes('Live'), false)
   assert.equal(FILM.includes('Click for demo'), false)
 })

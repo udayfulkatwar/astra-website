@@ -13,7 +13,7 @@ export function Product() {
         <p className="section-intro">{PRODUCT_INTRO}</p>
       </div>
       <ul className={styles.grid}>
-        {PRODUCT_MODULES.map((mod) => {
+        {PRODUCT_MODULES.map((mod, i) => {
           const tone = statusTone(mod.status)
           return (
             <li key={mod.id} className={`panel ${styles.card}`}>
@@ -32,7 +32,10 @@ export function Product() {
                 </span>
                 <h3 className={styles.name}>{mod.name}</h3>
                 <p className={styles.text}>{mod.text}</p>
-                <p className={styles.caption}>{SHOT_CAPTION}</p>
+                <p className={styles.caption}>
+                  <span className={styles.step}>{String(i + 1).padStart(2, '0')}</span>
+                  <span>{SHOT_CAPTION}</span>
+                </p>
               </div>
             </li>
           )
