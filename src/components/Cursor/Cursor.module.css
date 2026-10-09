@@ -8,6 +8,10 @@
   height: 0;
 }
 
+:global(html[data-menu-open]) .cursor {
+  visibility: hidden;
+}
+
 .disc {
   position: absolute;
   left: 0;

@@ -20,3 +20,12 @@ export function deepLinkSelector(hash: string, exists: (id: string) => boolean):
   if (!id || !exists(id)) return null
   return `#${id}`
 }
+
+/**
+ * Where the browser Back button should land. A hash that names a real section
+ * scrolls there. Anything else is the top (0), which is also how leaving the
+ * film returns home when the previous address has no section.
+ */
+export function hashScrollTarget(hash: string, exists: (id: string) => boolean): string | 0 {
+  return deepLinkSelector(hash, exists) ?? 0
+}

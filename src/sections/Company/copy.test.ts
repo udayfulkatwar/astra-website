@@ -97,6 +97,9 @@ test('leadership copy is the approved text and makes no positive corporate claim
   assert.doesNotMatch(view, /848w/)
 
   const css = readFileSync(new URL('./Company.module.css', import.meta.url), 'utf8')
+  assert.match(css, /\.card\s*\{[^}]*opacity:\s*1/)
+  assert.doesNotMatch(css, /company-rise[^;\n]*\bboth\b/)
+  assert.match(css, /prefers-reduced-motion:\s*reduce[\s\S]*\.card[\s\S]*opacity:\s*1/)
   assert.match(css, /\.frame\s*\{[^}]*width:\s*168px/)
   assert.match(css, /min-width:\s*1024px\)[\s\S]*\.frame\s*\{[^}]*width:\s*212px/)
   assert.doesNotMatch(css, /max-width:\s*424px/)

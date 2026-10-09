@@ -141,39 +141,54 @@
 .log {
   position: absolute;
   right: var(--pad-x);
-  bottom: clamp(24px, 4vh, 48px);
-  width: min(360px, 28vw);
-  padding: 14px 16px 16px;
+  bottom: clamp(16px, 3vh, 36px);
+  width: min(420px, 34vw);
+  padding: 12px 14px 14px;
 }
 
 .logHead {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-bottom: 10px;
-  margin-bottom: 10px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
   border-bottom: 1px solid var(--line);
   color: var(--bone);
 }
+.logHead > span:first-child {
+  max-width: 100%;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
 .logNote {
-  color: var(--faint);
+  color: var(--ember);
+  letter-spacing: 0.04em;
 }
 
 .logLines {
   display: grid;
-  gap: 7px;
-  min-height: 112px;
+  gap: 6px;
   font-family: var(--mono);
   font-size: var(--fs-micro);
-  line-height: 1.4;
+  line-height: 1.35;
   color: var(--mute);
 }
 
 .logLine {
   display: grid;
-  grid-template-columns: 5.6rem 1fr;
-  gap: 10px;
+  grid-template-columns: 1.5rem 1fr;
+  gap: 8px;
+  align-items: start;
   animation: logIn 0.5s var(--ease-out) both;
+}
+.logTitle {
+  display: block;
+  color: var(--bone);
+}
+.logDetail {
+  display: block;
+  color: var(--mute);
 }
 .logKey {
   color: var(--faint);
@@ -245,10 +260,49 @@
   }
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1200px) {
   .copy {
-    width: min(58vw, 640px);
+    width: min(46vw, 520px);
   }
+  .log {
+    width: min(380px, 36vw);
+  }
+}
+
+@media (max-width: 900px) {
+  .copy {
+    top: clamp(84px, 11svh, 108px);
+    right: var(--pad-x);
+    width: auto;
+    transform: none;
+  }
+  .state {
+    top: 0;
+    transform: none;
+  }
+  .log {
+    left: var(--pad-x);
+    right: var(--pad-x);
+    width: auto;
+    bottom: 8px;
+    padding: 8px 10px 10px;
+  }
+  .logHead {
+    gap: 2px;
+    padding-bottom: 4px;
+    margin-bottom: 4px;
+  }
+  .logLines {
+    gap: 3px;
+    font-size: 0.625rem;
+    line-height: 1.25;
+  }
+  .hint {
+    display: none;
+  }
+}
+
+@media (max-width: 700px) {
   .log {
     display: none;
   }
@@ -309,7 +363,8 @@
 @media (prefers-reduced-motion: reduce) {
   .statusDot,
   .caret,
-  .hintLine::after {
+  .hintLine::after,
+  .logLine {
     animation: none;
   }
 }

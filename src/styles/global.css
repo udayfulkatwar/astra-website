@@ -294,6 +294,19 @@ main {
   z-index: 1;
 }
 
+.session-block {
+  display: grid;
+  gap: 6px;
+}
+.session-note {
+  margin: 0;
+  max-width: 42ch;
+  color: var(--mute);
+  font-family: var(--mono);
+  font-size: var(--fs-micro);
+  line-height: 1.4;
+}
+
 /* faint film grain */
 .grain {
   position: fixed;

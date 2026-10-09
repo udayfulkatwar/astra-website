@@ -1,5 +1,15 @@
 # Change log
 
+## 2026-10-09 — Navigation, menu scroll, workflow, sessions
+
+- **Branch:** `nav-scroll-redesign`, from `main` at `323d10d`. Not merged. Production was not modified. The Deploy workflow was not run.
+- **Menu scroll:** Opening the menu stops Lenis, and a stopped Lenis calls `preventDefault` on wheel and touch unless the event path has `data-lenis-prevent`. The menu list did not have that attribute, so the wheel could not move it. The list now carries `data-lenis-prevent` and scrolls itself only when it is taller than the panel. Closing the menu starts Lenis again and puts the page back where it was. A menu choice writes the section into the address. Back follows that section, or the position saved before the choice. Leaving the film with no previous section still returns to the top.
+- **Menu:** The full-screen giant type is a right-hand panel, about 400px wide on desktop and full width below 720px. Items are 18px with a mono index and one line of description. Request access stays the primary action. The cursor disc is hidden while the menu is open.
+- **Workflow:** The hero `agent.log` panel is now “ASTRA — System Workflow Preview”, with six labelled stages and a visible “SIMULATED DEMONSTRATION” label. No fictional trades or performance figures. It sits beside the introduction from 701px wide, and is not drawn over the introduction on a narrower screen.
+- **Sessions:** Forex status uses each city's local window (Sydney 07:00–16:00, Tokyo/London/New York 08:00–17:00) and the forex week Sunday 17:00 to Friday 17:00 America/New_York. The label says it is approximate, not exchange hours, and not a live feed. Holidays are not accounted for.
+- **Leadership:** Cards keep `opacity: 1` when reduced motion cancels the entrance, so a reveal cannot leave them invisible.
+- **Deployment approval:** Not requested.
+
 ## 2026-10-09 — Leadership section
 
 - **Branch:** `leadership-section`, from `main` at `e572b0d`. Not merged. `main` was not pushed. Production was not modified. The Deploy workflow was not run.
