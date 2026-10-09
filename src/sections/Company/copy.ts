@@ -24,8 +24,8 @@ export const COMMITMENT_TEXT =
 export const COMMITMENT_ORIGIN =
   'ASTRA — Independent, bootstrapped fintech initiative. Founded September 2026, India.'
 
-/** Intrinsic size of the portrait frame. 2× is the crop; 1× is half of that. No upscale. */
-export const PORTRAIT = { width: 848, height: 784 } as const
+/** 2× file for the 212px desktop frame. 1× is half of this. Same crop, no upscale. */
+export const PORTRAIT = { width: 424, height: 392 } as const
 
 export interface LeaderPhoto {
   src: string
@@ -71,10 +71,10 @@ export const LEADERS: readonly Leader[] = [
     },
     photo: {
       src: `${PORTRAIT_BASE}.jpg`,
-      avif: `${PORTRAIT_BASE}-424.avif`,
-      avif2x: `${PORTRAIT_BASE}-848.avif`,
-      webp: `${PORTRAIT_BASE}-424.webp`,
-      webp2x: `${PORTRAIT_BASE}-848.webp`,
+      avif: `${PORTRAIT_BASE}-212.avif`,
+      avif2x: `${PORTRAIT_BASE}-424.avif`,
+      webp: `${PORTRAIT_BASE}-212.webp`,
+      webp2x: `${PORTRAIT_BASE}-424.webp`,
       width: PORTRAIT.width,
       height: PORTRAIT.height,
       alt: 'Uday Fulkatwar, Founder of ASTRA',

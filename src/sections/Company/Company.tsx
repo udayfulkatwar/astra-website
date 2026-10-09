@@ -36,13 +36,13 @@ function Portrait({ person }: { person: Leader }) {
     <picture>
       <source
         type="image/avif"
-        srcSet={`${photo.avif} 424w, ${photo.avif2x} 848w`}
-        sizes="(max-width: 460px) 86vw, 424px"
+        srcSet={`${photo.avif} 212w, ${photo.avif2x} 424w`}
+        sizes="(min-width: 1024px) 212px, 168px"
       />
       <source
         type="image/webp"
-        srcSet={`${photo.webp} 424w, ${photo.webp2x} 848w`}
-        sizes="(max-width: 460px) 86vw, 424px"
+        srcSet={`${photo.webp} 212w, ${photo.webp2x} 424w`}
+        sizes="(min-width: 1024px) 212px, 168px"
       />
       <img
         className={styles.photo}
@@ -73,13 +73,17 @@ export function Company() {
         {LEADERS.map((person) => (
           <li key={person.id}>
             <article className={`panel brackets ${styles.card}`} aria-labelledby={person.id}>
-              <div className={styles.frame}>
-                <Portrait person={person} />
+              <div className={styles.identity}>
+                <div className={styles.frame}>
+                  <Portrait person={person} />
+                </div>
+                <div className={styles.who}>
+                  <h3 id={person.id} className={styles.name}>
+                    {person.name}
+                  </h3>
+                  <p className={styles.role}>{person.title}</p>
+                </div>
               </div>
-              <h3 id={person.id} className={styles.name}>
-                {person.name}
-              </h3>
-              <p className={styles.role}>{person.title}</p>
               <div className={styles.bio}>
                 {person.bio.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>

@@ -92,6 +92,14 @@ test('leadership copy is the approved text and makes no positive corporate claim
   const view = readFileSync(new URL('./Company.tsx', import.meta.url), 'utf8')
   assert.equal(view.includes('<cite'), false)
   assert.doesNotMatch(view, /—\s*Uday|—\s*Vivek|\bsays\b/)
+  assert.match(view, /212w/)
+  assert.match(view, /424w/)
+  assert.doesNotMatch(view, /848w/)
+
+  const css = readFileSync(new URL('./Company.module.css', import.meta.url), 'utf8')
+  assert.match(css, /\.frame\s*\{[^}]*width:\s*168px/)
+  assert.match(css, /min-width:\s*1024px\)[\s\S]*\.frame\s*\{[^}]*width:\s*212px/)
+  assert.doesNotMatch(css, /max-width:\s*424px/)
 
   const html = readFileSync(new URL('../../../index.html', import.meta.url), 'utf8')
   const noscript = html.slice(html.indexOf('<noscript>'), html.indexOf('</noscript>'))
