@@ -123,25 +123,6 @@
   color: var(--ember);
 }
 
-.cta {
-  flex: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 6px 8px 0;
-  min-height: 38px;
-  border-radius: 999px;
-  background: var(--bone);
-  color: var(--void);
-  font-weight: 600;
-  font-size: 0.9375rem;
-}
-
-.cta:hover,
-.cta:focus-visible {
-  background: var(--ember);
-}
-
 .foot {
   flex: none;
   margin-top: 6px;

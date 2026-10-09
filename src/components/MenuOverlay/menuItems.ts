@@ -9,8 +9,6 @@ export const MENU_ITEMS = [
   { href: '#company', label: 'Leadership', text: 'The people behind ASTRA' },
 ] as const
 
-export const MENU_ACCESS = { href: '#contact', label: 'Request access' } as const
-
 export const MENU_DEMO = {
   label: 'Launch ASTRA Demo',
   note: 'demo · simulated data',

@@ -5,7 +5,7 @@ import { releaseLockedScroll, useLenis } from '../SmoothScroll/SmoothScroll'
 import { shouldRestartScrollOnMenuClose } from '../SmoothScroll/anchorScroll'
 import { SITE } from '../../lib/content'
 import { store } from '../../lib/store'
-import { MENU_ACCESS, MENU_DEMO, MENU_ITEMS, MENU_POLICIES } from './menuItems'
+import { MENU_DEMO, MENU_ITEMS, MENU_POLICIES } from './menuItems'
 import { MENU_EXIT_SECONDS, MENU_REVEAL_SECONDS } from './menuMotion'
 import styles from './MenuOverlay.module.css'
 
@@ -153,16 +153,6 @@ export function MenuOverlay({ open, onClose }: { open: boolean; onClose: () => v
                 <path d="M3.5 8.5 8.5 3.5M5 3.5h3.5V7" fill="none" stroke="currentColor" strokeWidth="1.2" />
               </svg>
               <span className="sr-only">{MENU_DEMO.newTab}</span>
-            </a>
-            <a
-              className={styles.cta}
-              href={MENU_ACCESS.href}
-              onClick={(e) => {
-                e.preventDefault()
-                go(MENU_ACCESS.href)
-              }}
-            >
-              {MENU_ACCESS.label}
             </a>
             <div className={styles.foot}>
               <MarketSessions className={styles.times} />

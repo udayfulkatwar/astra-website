@@ -3,7 +3,7 @@
 ## 2026-10-09 — Menu demo and policy links
 
 - **Branch:** `menu-demo-link`, from `main` at `e883979`. Not merged. Production was not modified. The Deploy workflow was not run.
-- **Menu:** “Launch ASTRA Demo” sits above Request access. It opens `SITE.demoUrl` in a new tab (`target="_blank"`, `rel="noopener noreferrer"`) and does not scroll the page. The menu closes. Privacy, Terms, and Risk sit under the forex list and open in this tab at `/privacy/`, `/terms/`, and `/risk/`.
+- **Menu:** “Launch ASTRA Demo” sits at the bottom of the list. It opens `SITE.demoUrl` in a new tab (`target="_blank"`, `rel="noopener noreferrer"`) and does not scroll the page. The menu closes. Privacy, Terms, and Risk sit under the forex list and open in this tab at `/privacy/`, `/terms/`, and `/risk/`. The menu panel does not include Request access. That action stays on the header pill and in the contact section.
 - **Deployment approval:** Not requested.
 
 ## 2026-10-09 — Navigation, menu scroll, workflow, sessions
