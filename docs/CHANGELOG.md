@@ -3,7 +3,7 @@
 ## 2026-10-09 — Leadership section
 
 - **Branch:** `leadership-section`, from `main` at `e572b0d`. Not merged. `main` was not pushed. Production was not modified. The Deploy workflow was not run.
-- **About:** `#company` keeps its anchor, scroll margin, and mission block. A leadership group, “The People Behind ASTRA”, shows Uday Fulkatwar, Founder, and Vivek Chaudhary, Co-Founder, with monogram initials and the existing project-leadership denial. Bios, quotes, and profile links are empty and not rendered. A shared-commitment list covers risk discipline, evidence, transparency, and responsible AI development. No new corporate facts.
+- **About:** `#company` keeps its anchor and scroll margin. The section uses the founder-approved leadership copy: eyebrow “THE PEOPLE BEHIND ASTRA”, heading “Building Intelligence. Engineering Trust.”, two cards, and the commitment footer. Uday Fulkatwar’s card uses a cropped portrait (face and upper torso only; resized and compressed to WebP and AVIF at 424 and 848, plus a JPEG fallback). Vivek Chaudhary’s card uses a VC initials frame of the same size until a photo is supplied. Leadership principles are labelled and not attributed as personal quotes. The mission sentence stays in copy and is not rendered. Bios are not copied into the noscript blurb or the meta description. JSON-LD Person nodes gain `sameAs` LinkedIn URLs and, for Uday, `image`.
 - **Deployment approval:** Not requested.
 
 ## 2026-10-09 — First click and menu anchors

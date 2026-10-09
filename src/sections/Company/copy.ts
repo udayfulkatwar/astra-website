@@ -5,13 +5,37 @@ export const COMPANY_BODY = [
   'The project is designed with the needs of proprietary trading participants and independent traders in mind, with an emphasis on system reliability, transparent controls, and progressive technical validation.',
 ] as const
 
-export const LEADERSHIP_TITLE = 'The People Behind ASTRA'
-export const LEADERSHIP_INTRO =
-  'Two people are building ASTRA, an independent startup project founded in India in September 2026. It is bootstrapped and self-funded, not yet formally incorporated, and focused on disciplined, auditable trading and risk software.'
+/** Kept in copy. Not rendered: the commitment footer already carries the section close. */
+export const MISSION = {
+  title: 'Our Mission',
+  text: 'To make disciplined risk management, accountable automation, and transparent trading workflows central to the trading experience.',
+} as const
 
-export interface LeaderLink {
-  label: string
-  href: string
+export const LEADERSHIP_TAG = 'THE PEOPLE BEHIND ASTRA'
+export const LEADERSHIP_TITLE = 'Building Intelligence. Engineering Trust.'
+export const LEADERSHIP_INTRO =
+  'Behind ASTRA is a commitment to a more disciplined future for trading technology. We believe intelligent systems should be measured not only by what they can automate, but by how responsibly they manage uncertainty, preserve accountability, and demonstrate measurable value.'
+
+export const PRINCIPLE_LABEL = 'Leadership principle'
+
+export const COMMITMENT_LABEL = 'OUR COMMITMENT'
+export const COMMITMENT_TEXT =
+  'Build with discipline. Validate with evidence. Earn trust through transparency.'
+export const COMMITMENT_ORIGIN =
+  'ASTRA — Independent, bootstrapped fintech initiative. Founded September 2026, India.'
+
+/** Intrinsic size of the portrait frame. 2× is the crop; 1× is half of that. No upscale. */
+export const PORTRAIT = { width: 848, height: 784 } as const
+
+export interface LeaderPhoto {
+  src: string
+  avif: string
+  avif2x: string
+  webp: string
+  webp2x: string
+  width: number
+  height: number
+  alt: string
 }
 
 export interface Leader {
@@ -19,57 +43,57 @@ export interface Leader {
   initials: string
   name: string
   title: string
-  /** Shown under the title. Empty bios, quotes, and links stay in the data and are not rendered. */
-  roleNote: string
-  bio: string
-  quote: string
-  links: readonly LeaderLink[]
+  bio: readonly string[]
+  /** A section theme. Not a verified personal quote, and not attributed to the person. */
+  principle: string
+  linkedin: { href: string; label: string }
+  /** Absent until a real photo is supplied. The card then shows initials in the same frame. */
+  photo?: LeaderPhoto
 }
 
-const ROLE_NOTE =
-  'This is a project leadership title. It is not proof of incorporation, directorship, or share ownership.'
+const PORTRAIT_BASE = '/media/leadership/uday-fulkatwar'
 
 export const LEADERS: readonly Leader[] = [
   {
     id: 'leader-uday',
     initials: 'UF',
     name: 'Uday Fulkatwar',
-    title: 'Founder',
-    roleNote: `Uday Fulkatwar is Founder. ${ROLE_NOTE}`,
-    bio: '',
-    quote: '',
-    links: [],
+    title: 'Founder, ASTRA',
+    bio: [
+      'Uday Fulkatwar founded ASTRA in September 2026 with a vision to develop intelligent trading infrastructure built around discipline, transparency, and responsible automation.',
+      'His focus is on shaping a risk-first platform that combines AI-assisted research, systematic strategy evaluation, deterministic safeguards, and human oversight.',
+      'Through ASTRA, he aims to make advanced trading and risk-management capabilities more accessible to proprietary trading firm participants and independent traders.',
+    ],
+    principle: 'Intelligence creates possibilities. Discipline creates trust.',
+    linkedin: {
+      href: 'https://www.linkedin.com/in/udayfulkatwar/',
+      label: 'Uday Fulkatwar on LinkedIn (opens in a new tab)',
+    },
+    photo: {
+      src: `${PORTRAIT_BASE}.jpg`,
+      avif: `${PORTRAIT_BASE}-424.avif`,
+      avif2x: `${PORTRAIT_BASE}-848.avif`,
+      webp: `${PORTRAIT_BASE}-424.webp`,
+      webp2x: `${PORTRAIT_BASE}-848.webp`,
+      width: PORTRAIT.width,
+      height: PORTRAIT.height,
+      alt: 'Uday Fulkatwar, Founder of ASTRA',
+    },
   },
   {
     id: 'leader-vivek',
     initials: 'VC',
     name: 'Vivek Chaudhary',
-    title: 'Co-Founder',
-    roleNote: `Vivek Chaudhary is Co-Founder. ${ROLE_NOTE}`,
-    bio: '',
-    quote: '',
-    links: [],
+    title: 'Co-Founder, ASTRA',
+    bio: [
+      'Vivek Chaudhary is the Co-Founder of ASTRA, an early-stage fintech initiative developing AI-assisted trading and risk-management technology.',
+      "As part of ASTRA's founding team, he shares the project's commitment to transparent systems, responsible innovation, and long-term product credibility.",
+      "The founding team's vision is to develop technology where automation can be evaluated, decisions can be understood, and financial risk remains a central design consideration.",
+    ],
+    principle: 'Technology earns confidence when its decisions are transparent, testable, and accountable.',
+    linkedin: {
+      href: 'https://www.linkedin.com/in/vivek-chaudhary-77b52a434/',
+      label: 'Vivek Chaudhary on LinkedIn (opens in a new tab)',
+    },
   },
 ]
-
-/** Fields a later approved bio, quote, or profile link can fill. Empty values are omitted. */
-export function leaderExtras(leader: Leader) {
-  return {
-    bio: leader.bio.trim(),
-    quote: leader.quote.trim(),
-    links: leader.links.filter((link) => link.label.trim() !== '' && link.href.trim() !== ''),
-  }
-}
-
-export const COMMITMENT_TITLE = 'Shared commitment'
-export const COMMITMENTS = [
-  { label: 'Risk discipline', text: 'Deterministic controls run before any execution.' },
-  { label: 'Evidence', text: 'Claims are labelled implemented, simulated, or planned.' },
-  { label: 'Transparency', text: 'Status is stated clearly, and simulated data is marked.' },
-  { label: 'Responsible AI development', text: 'AI advises. Humans authorise.' },
-] as const
-
-export const MISSION = {
-  title: 'Our Mission',
-  text: 'To make disciplined risk management, accountable automation, and transparent trading workflows central to the trading experience.',
-} as const
