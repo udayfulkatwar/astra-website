@@ -12,7 +12,7 @@ import styles from './Contact.module.css'
 
 /** The finale: the locked core returns behind the invitation. */
 export function Contact({ webgl }: { webgl: boolean }) {
-  const root = useRef<HTMLElement>(null)
+  const root = useRef<HTMLDivElement>(null)
   const lenis = useLenis()
   const [copied, setCopied] = useState(false)
 
