@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
-import { forexWeekOpen, sessionOpen, sessionSnapshot, zonedClock, FOREX_SESSIONS, SESSION_LABEL, HOLIDAY_NOTE } from './sessions.ts'
+import { forexWeekOpen, sessionOpen, sessionSnapshot, zonedClock, FOREX_SESSIONS, SESSION_LABEL, SESSION_DETAIL } from './sessions.ts'
 
 const sydney = FOREX_SESSIONS[0]
 const tokyo = FOREX_SESSIONS[1]
@@ -8,8 +8,9 @@ const london = FOREX_SESSIONS[2]
 const ny = FOREX_SESSIONS[3]
 
 test('session copy does not claim a live feed or holiday awareness', () => {
-  assert.match(SESSION_LABEL, /not exchange hours, no live data/)
-  assert.match(HOLIDAY_NOTE, /Holidays are not accounted for/)
+  assert.equal(SESSION_LABEL, 'forex sessions · approx. · local time')
+  assert.match(SESSION_DETAIL, /Not exchange hours, no live data/)
+  assert.match(SESSION_DETAIL, /Holidays are not included/)
 })
 
 test('weekday hours follow each city local window', () => {

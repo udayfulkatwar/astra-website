@@ -17,6 +17,19 @@ test('the menu list is excluded from Lenis and only scrolls itself', () => {
   assert.doesNotMatch(css, /overflow:\s*hidden/)
 })
 
+test('the menu is the seven founder links plus request access', () => {
+  assert.deepEqual(
+    MENU_ITEMS.map((item) => item.label),
+    ['Overview', 'Pipeline', 'AI Agents', 'Risk Gate', 'Command Center', 'Product Demo', 'Leadership'],
+  )
+  assert.equal(MENU_ACCESS.label, 'Request access')
+  const view = readFileSync(new URL('./MenuOverlay.tsx', import.meta.url), 'utf8')
+  assert.match(view, /MarketSessions/)
+  for (const label of ['Film', 'Engineering', 'Principles', 'Rollout']) {
+    assert.equal(MENU_ITEMS.some((item) => item.label === label), false)
+  }
+})
+
 test('every menu href names a section that exists', () => {
   const sources = [
     'src/sections/Hero/Hero.tsx',

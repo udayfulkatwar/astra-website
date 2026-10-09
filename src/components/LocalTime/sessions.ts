@@ -11,10 +11,10 @@
  * Holidays are not accounted for.
  */
 
-export const SESSION_LABEL =
-  'Forex sessions (approx., local time) — not exchange hours, no live data'
+export const SESSION_LABEL = 'forex sessions · approx. · local time'
 
-export const HOLIDAY_NOTE = 'Holidays are not accounted for.'
+/** Shown on the widget title, not as a second paragraph. */
+export const SESSION_DETAIL = 'Not exchange hours, no live data. Holidays are not included.'
 
 export interface ForexSession {
   city: string

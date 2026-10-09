@@ -61,7 +61,7 @@ src/
                    Magnetic, ChapterHud, MenuOverlay, SplitLines, LocalTime/MarketSessions
   scenes/HeroScene WebGL only — HeroCanvas, SceneController, AgentCore (rings, core,
                    radar plate), SignalFlow (GPU streaks + dust), GateLabels, shaders/
-  sections/        Hero (+ AgentLog), Pipeline, Agents, Gate, Command, Principles,
+  sections/        Hero, Pipeline, Agents, Gate, Command, Principles,
                    Rollout, Contact
   hooks/           usePerformanceTier, useMousePosition, useReducedMotion, useScrollProgress
   lib/

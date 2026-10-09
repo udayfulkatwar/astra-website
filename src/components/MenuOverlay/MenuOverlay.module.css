@@ -27,7 +27,7 @@
   flex-direction: column;
   background: var(--void);
   border-left: 1px solid var(--line-strong);
-  padding: 72px 18px 14px;
+  padding: 92px 18px 12px;
 }
 
 .scroller {
@@ -37,12 +37,18 @@
   overscroll-behavior: contain;
 }
 
+.scroller ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
 .item {
   display: grid;
   grid-template-columns: 1.8rem 1fr;
   column-gap: 8px;
   row-gap: 1px;
-  padding: 6px 8px;
+  padding: 3px 8px;
   border-radius: 8px;
 }
 
@@ -82,10 +88,11 @@
 }
 
 .cta {
+  flex: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 10px 8px 6px;
+  margin: 8px 8px 0;
   min-height: 42px;
   border-radius: 999px;
   background: var(--bone);
@@ -101,25 +108,24 @@
 
 .foot {
   flex: none;
-  border-top: 1px solid var(--line);
   margin-top: 8px;
-  padding-top: 10px;
-  color: var(--mute);
-  font-size: var(--fs-micro);
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
 }
 
 .times {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 4px 12px;
-  margin: 6px 0;
+  gap: 2px 12px;
+  margin: 0;
+  font-size: var(--fs-micro);
   font-variant-numeric: tabular-nums;
 }
 
 .times li {
   display: flex;
-  flex-wrap: wrap;
   gap: 4px;
+  white-space: nowrap;
 }
 
 @media (max-width: 719px) {

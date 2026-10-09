@@ -136,91 +136,6 @@
   background-position: 100% 100%;
 }
 
-/* ---------- agent log ---------- */
-
-.log {
-  position: absolute;
-  right: var(--pad-x);
-  bottom: clamp(16px, 3vh, 36px);
-  width: min(420px, 34vw);
-  padding: 12px 14px 14px;
-}
-
-.logHead {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 4px;
-  padding-bottom: 8px;
-  margin-bottom: 8px;
-  border-bottom: 1px solid var(--line);
-  color: var(--bone);
-}
-.logHead > span:first-child {
-  max-width: 100%;
-  line-height: 1.35;
-  overflow-wrap: anywhere;
-}
-.logNote {
-  color: var(--ember);
-  letter-spacing: 0.04em;
-}
-
-.logLines {
-  display: grid;
-  gap: 6px;
-  font-family: var(--mono);
-  font-size: var(--fs-micro);
-  line-height: 1.35;
-  color: var(--mute);
-}
-
-.logLine {
-  display: grid;
-  grid-template-columns: 1.5rem 1fr;
-  gap: 8px;
-  align-items: start;
-  animation: logIn 0.5s var(--ease-out) both;
-}
-.logTitle {
-  display: block;
-  color: var(--bone);
-}
-.logDetail {
-  display: block;
-  color: var(--mute);
-}
-.logKey {
-  color: var(--faint);
-}
-.logLine[data-tone='pass'] > span:last-child {
-  color: var(--pass);
-}
-.logLine[data-tone='ember'] > span:last-child {
-  color: var(--ember);
-}
-.logLine[data-tone='lilac'] > span:last-child {
-  color: var(--lilac);
-}
-@keyframes logIn {
-  from {
-    opacity: 0;
-    transform: translateY(6px);
-  }
-}
-
-.caret {
-  width: 7px;
-  height: 12px;
-  background: var(--bone);
-  animation: blink 1s steps(2) infinite;
-}
-@keyframes blink {
-  50% {
-    opacity: 0;
-  }
-}
-
 .hint {
   position: absolute;
   left: 50%;
@@ -260,51 +175,9 @@
   }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1100px) {
   .copy {
-    width: min(46vw, 520px);
-  }
-  .log {
-    width: min(380px, 36vw);
-  }
-}
-
-@media (max-width: 900px) {
-  .copy {
-    top: clamp(84px, 11svh, 108px);
-    right: var(--pad-x);
-    width: auto;
-    transform: none;
-  }
-  .state {
-    top: 0;
-    transform: none;
-  }
-  .log {
-    left: var(--pad-x);
-    right: var(--pad-x);
-    width: auto;
-    bottom: 8px;
-    padding: 8px 10px 10px;
-  }
-  .logHead {
-    gap: 2px;
-    padding-bottom: 4px;
-    margin-bottom: 4px;
-  }
-  .logLines {
-    gap: 3px;
-    font-size: 0.625rem;
-    line-height: 1.25;
-  }
-  .hint {
-    display: none;
-  }
-}
-
-@media (max-width: 700px) {
-  .log {
-    display: none;
+    width: min(58vw, 640px);
   }
 }
 
@@ -362,9 +235,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .statusDot,
-  .caret,
-  .hintLine::after,
-  .logLine {
+  .hintLine::after {
     animation: none;
   }
 }

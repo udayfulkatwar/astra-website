@@ -136,17 +136,17 @@ export function MenuOverlay({ open, onClose }: { open: boolean; onClose: () => v
                   ))}
                 </ul>
               </nav>
-              <a
-                className={styles.cta}
-                href={MENU_ACCESS.href}
-                onClick={(e) => {
-                  e.preventDefault()
-                  go(MENU_ACCESS.href)
-                }}
-              >
-                {MENU_ACCESS.label}
-              </a>
             </div>
+            <a
+              className={styles.cta}
+              href={MENU_ACCESS.href}
+              onClick={(e) => {
+                e.preventDefault()
+                go(MENU_ACCESS.href)
+              }}
+            >
+              {MENU_ACCESS.label}
+            </a>
             <div className={styles.foot}>
               <MarketSessions className={styles.times} />
             </div>

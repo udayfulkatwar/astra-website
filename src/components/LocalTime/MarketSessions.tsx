@@ -1,18 +1,16 @@
 import { useEffect, useState } from 'react'
-import { HOLIDAY_NOTE, SESSION_LABEL, sessionSnapshot } from './sessions'
+import { SESSION_DETAIL, SESSION_LABEL, sessionSnapshot } from './sessions'
 
 export function MarketSessions({ className }: { className?: string }) {
   const [now, setNow] = useState(() => new Date())
-  const [zone, setZone] = useState('')
   useEffect(() => {
-    setZone(Intl.DateTimeFormat().resolvedOptions().timeZone || '')
     const id = setInterval(() => setNow(new Date()), 15000)
     return () => clearInterval(id)
   }, [])
   const rows = sessionSnapshot(now)
   return (
-    <div className="session-block">
-      <p className="session-note">{SESSION_LABEL}</p>
+    <div className="session-block" title={SESSION_DETAIL}>
+      <p className="session-heading">{SESSION_LABEL}</p>
       <ul className={className} aria-label={SESSION_LABEL}>
         {rows.map((row) => (
           <li key={row.city} data-open={row.open || undefined}>
@@ -21,10 +19,6 @@ export function MarketSessions({ className }: { className?: string }) {
           </li>
         ))}
       </ul>
-      <p className="session-note">
-        {HOLIDAY_NOTE}
-        {zone ? ` Your timezone: ${zone}.` : ''} Each time above is that city's local time.
-      </p>
     </div>
   )
 }
