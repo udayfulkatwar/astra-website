@@ -95,5 +95,15 @@ export const LEADERS: readonly Leader[] = [
       href: 'https://www.linkedin.com/in/vivek-chaudhary-77b52a434/',
       label: 'Vivek Chaudhary on LinkedIn (opens in a new tab)',
     },
+    photo: {
+      src: '/media/leadership/vivek-chaudhary.jpg',
+      avif: '/media/leadership/vivek-chaudhary-212.avif',
+      avif2x: '/media/leadership/vivek-chaudhary-424.avif',
+      webp: '/media/leadership/vivek-chaudhary-212.webp',
+      webp2x: '/media/leadership/vivek-chaudhary-424.webp',
+      width: PORTRAIT.width,
+      height: PORTRAIT.height,
+      alt: 'Vivek Chaudhary, Co-Founder of ASTRA',
+    },
   },
 ]

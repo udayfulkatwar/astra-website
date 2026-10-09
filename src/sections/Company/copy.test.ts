@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import { readFileSync } from 'node:fs'
+import { readFileSync, statSync } from 'node:fs'
 import { test } from 'node:test'
 import {
   COMMITMENT_LABEL,
@@ -58,7 +58,20 @@ test('leadership copy is the approved text and makes no positive corporate claim
   assert.equal(LEADERS[1].name, 'Vivek Chaudhary')
   assert.equal(LEADERS[1].title, 'Co-Founder, ASTRA')
   assert.equal(LEADERS[1].initials, 'VC')
-  assert.equal(LEADERS[1].photo, undefined)
+  assert.equal(LEADERS[1].photo?.alt, 'Vivek Chaudhary, Co-Founder of ASTRA')
+  assert.equal(LEADERS[1].photo?.width, PORTRAIT.width)
+  assert.equal(LEADERS[1].photo?.height, PORTRAIT.height)
+  assert.equal(LEADERS[1].photo?.src, '/media/leadership/vivek-chaudhary.jpg')
+  for (const file of [
+    LEADERS[1].photo?.src,
+    LEADERS[1].photo?.avif,
+    LEADERS[1].photo?.avif2x,
+    LEADERS[1].photo?.webp,
+    LEADERS[1].photo?.webp2x,
+  ]) {
+    assert.ok(file)
+    assert.ok(statSync(new URL(`../../../public${file}`, import.meta.url)).size > 1000)
+  }
   assert.deepEqual(LEADERS[1].bio, [
     'Vivek Chaudhary is the Co-Founder of ASTRA, an early-stage fintech initiative developing AI-assisted trading and risk-management technology.',
     "As part of ASTRA's founding team, he shares the project's commitment to transparent systems, responsible innovation, and long-term product credibility.",
@@ -110,5 +123,6 @@ test('leadership copy is the approved text and makes no positive corporate claim
   assert.match(html, /"sameAs": "https:\/\/www\.linkedin\.com\/in\/udayfulkatwar\/"/)
   assert.match(html, /"sameAs": "https:\/\/www\.linkedin\.com\/in\/vivek-chaudhary-77b52a434\/"/)
   assert.match(html, /"image": "https:\/\/astragrp\.net\/media\/leadership\/uday-fulkatwar\.jpg"/)
+  assert.match(html, /"image": "https:\/\/astragrp\.net\/media\/leadership\/vivek-chaudhary\.jpg"/)
   assert.doesNotMatch(html, /systematic strategy evaluation|early-stage fintech/)
 })

@@ -1,5 +1,12 @@
 # Change log
 
+## 2026-10-09 — Vivek portrait and menu pointer
+
+- **Branch:** `vivek-photo`, from `main` at `40556e5`. Not merged. Production was not modified. The Deploy workflow was not run.
+- **Leadership:** Vivek Chaudhary’s card uses a cropped portrait in the same 424×392 frame as Uday (head and upper torso, the corner sparkle excluded). WebP and AVIF at 212 and 424, plus a JPEG fallback. Alt text is “Vivek Chaudhary, Co-Founder of ASTRA”. The JSON-LD Person node has `image`, the same way Uday’s does.
+- **Menu:** While the menu is open the custom disc stays hidden and the native cursor returns: auto on the page, pointer on links and buttons.
+- **Deployment approval:** Not requested.
+
 ## 2026-10-09 — Menu demo and policy links
 
 - **Branch:** `menu-demo-link`, from `main` at `e883979`. Not merged. Production was not modified. The Deploy workflow was not run.
