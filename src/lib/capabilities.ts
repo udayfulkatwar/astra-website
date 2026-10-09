@@ -102,6 +102,10 @@ export const ENGINEERING_TAG = 'engineering approach'
 export const ENGINEERING_TITLE = 'AI-Assisted Development. Deterministic Risk Controls.'
 export const ENGINEERING_P1 =
   'ASTRA is developed with the support of Claude Code, which assists with implementation, debugging, test creation, and iterative software development.'
+export const ENGINEERING_NOW =
+  'Currently used: Claude Code as a development assistant. It helps with implementation, debugging, test creation, and iteration. It does not run inside the public demo and does not authorize trades.'
+export const ENGINEERING_LATER =
+  'Planned / not running in the public demo: in-product Claude API adapter (code exists, demo uses a simulated provider). The adapter is not running. The public demo does not call the Claude API.'
 export const ENGINEERING_P2 =
   'Within the product architecture, advisory intelligence is kept separate from rule-based risk enforcement: analysis can inform decisions, but deterministic controls and human authorization govern what may be executed.'
 export const ENGINEERING_RULE =

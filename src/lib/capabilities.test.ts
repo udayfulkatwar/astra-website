@@ -2,8 +2,10 @@ import assert from 'node:assert/strict'
 import { test } from 'node:test'
 import {
   ALL_CAPABILITIES,
+  ENGINEERING_LATER,
   ENGINEERING_LAYERS,
   ENGINEERING_NOTE,
+  ENGINEERING_NOW,
   ENGINEERING_RULE,
   PRODUCT_MODULES,
   statusTone,
@@ -68,4 +70,12 @@ test('the Claude line does not say Claude authorizes trades', () => {
   )
   assert.equal(ENGINEERING_NOTE, 'ASTRA is an independent project and is not affiliated with or endorsed by Anthropic.')
   assert.equal(statusTone('Under Development'), 'lilac')
+  assert.match(ENGINEERING_NOW, /Currently used: Claude Code as a development assistant/)
+  assert.match(
+    ENGINEERING_LATER,
+    /Planned \/ not running in the public demo: in-product Claude API adapter \(code exists, demo uses a simulated provider\)/,
+  )
+  assert.match(ENGINEERING_LATER, /does not call the Claude API/)
+  assert.doesNotMatch(`${ENGINEERING_NOW} ${ENGINEERING_LATER} ${ENGINEERING_NOTE}`, BANNED)
+  assert.doesNotMatch(ENGINEERING_LATER, /operational|is running in the demo|calls Claude from the demo/i)
 })

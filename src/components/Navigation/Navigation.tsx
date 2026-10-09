@@ -48,7 +48,7 @@ export function Navigation({ menuOpen, onMenu }: { menuOpen: boolean; onMenu: ()
 
   return (
     <header className={styles.header} data-scrolled={scrolled || undefined}>
-      <a href="#top" className={styles.logo} onClick={(e) => go(e, 0)} aria-label="ASTRA, back to top">
+      <a href="#top" className={styles.logo} onClick={(e) => go(e, 0)} aria-label="ASTRA, in development, back to top">
         <LogoMark />
         <span className={styles.wordmark}>ASTRA</span>
         <span className={styles.version}>in development</span>

@@ -1,6 +1,27 @@
 .follow {
   max-width: 68ch;
+  margin-top: clamp(22px, 3vw, 36px);
   color: var(--mute);
+}
+
+.split {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: clamp(22px, 3vw, 36px);
+}
+
+.splitCard {
+  margin: 0;
+  padding: 16px 18px;
+  min-width: 0;
+  color: var(--bone);
+}
+
+@media (max-width: 700px) {
+  .split {
+    grid-template-columns: 1fr;
+  }
 }
 
 .rule {

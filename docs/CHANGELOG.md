@@ -1,5 +1,18 @@
 # Change log
 
+## 2026-10-09 — Credibility upgrade
+
+- **Branch:** `credibility-upgrade`, from `main` at `41e21e4`. Not merged. `main` was not pushed. Production was not modified. The Deploy workflow was not run.
+- **About:** Founder Uday Fulkatwar and Co-Founder Vivek Chaudhary, stated as project leadership titles, not proof of incorporation, directorship, or share ownership. Independent startup project, not yet formally incorporated. Founded in India in September 2026. Bootstrapped and self-funded. Under active development. Industry line: AI-assisted trading infrastructure and risk-management software.
+- **Contact:** The public address is `founder@astragrp.net` (`SITE.email`). The mailto link, the copy button, the menu, the noscript blurb, JSON-LD, and the legal pages use that address.
+- **Legal:** Static pages `/privacy/`, `/terms/`, and `/risk/` in `public/`, with footer links and sitemap entries. No client router.
+- **SEO:** Softened description. `twitter:card` is `summary_large_image` with `twitter:image`. JSON-LD Organization names ASTRA, the site URL, foundingDate `2026-09`, two founder Person nodes, and the email. No legalName, address, or identifier.
+- **Engineering:** “Currently used: Claude Code as a development assistant” is separate from “Planned / not running in the public demo: in-product Claude API adapter (code exists, demo uses a simulated provider)”. The Anthropic non-affiliation sentence stays. The paragraph under the two status cards has the same top gap as the space above the cards (`clamp(22px, 3vw, 36px)`), including at 320, 390, 768, and 1440.
+- **Product:** The four existing frames stay in order (overview, risk, approvals, audit) with step marks 01–04. Captions are unchanged. No new images.
+- **Film:** “Watch Product Video” at the bottom of `#command` scrolls to `#astra-film`. The film link reads “Launch ASTRA Demo”. The href, target, and rel are unchanged.
+- **Accessibility:** `--faint` is `rgba(232, 226, 216, 0.52)` so 11px mono text clears 4.5:1 on `#0b0c0f`. “in development” shows below 860px and is in the logo link’s accessible name. The footer is a contentinfo landmark.
+- **Deployment approval:** Not requested.
+
 ## 2026-10-08 — Deep links land below the header
 
 - **Branch:** `fix/scroll-anchors`, from `main` at `7d2fde5`. Not merged. `main` was not pushed.

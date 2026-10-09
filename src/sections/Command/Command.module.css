@@ -376,3 +376,27 @@
     display: none;
   }
 }
+
+.watchRow {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(28px, 4vw, 48px);
+}
+
+.watch {
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+  padding: 0 18px;
+  border-radius: 999px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  background: var(--bone);
+  color: var(--void);
+  transition: background-color 0.3s ease, box-shadow 0.4s ease;
+}
+
+.watch:hover {
+  background: var(--ember);
+  box-shadow: 0 8px 30px -10px rgba(255, 107, 44, 0.8);
+}

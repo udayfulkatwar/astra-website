@@ -1,13 +1,17 @@
 export const COMPANY_TAG = 'about astra'
 export const COMPANY_TITLE = 'Building a More Disciplined Trading Infrastructure.'
 export const COMPANY_BODY = [
-  'ASTRA is an independent trading-technology project founded in India in September 2026. It is being developed to bring together market intelligence, configurable trading-risk controls, automated workflows, account monitoring, and human oversight in a unified platform.',
+  'ASTRA is an independent startup project, not yet formally incorporated. It was founded in India in September 2026 and is under active development. The project is bootstrapped and self-funded. It builds AI-assisted trading infrastructure and risk-management software.',
   'The project is designed with the needs of proprietary trading participants and independent traders in mind, with an emphasis on system reliability, transparent controls, and progressive technical validation.',
 ] as const
 export const COMPANY_BLOCKS = [
   {
-    title: 'Founded by Uday Fulkatwar',
-    text: 'Uday Fulkatwar founded ASTRA with the goal of developing a trading platform in which automation operates within clearly defined risk and operational safeguards. The project follows an evidence-led development approach, progressing through software testing, simulation, and controlled validation before broader operational use.',
+    title: 'Founder — Uday Fulkatwar',
+    text: 'Uday Fulkatwar is Founder. This is a project leadership title. It is not proof of incorporation, directorship, or share ownership.',
+  },
+  {
+    title: 'Co-Founder — Vivek Chaudhary',
+    text: 'Vivek Chaudhary is Co-Founder. This is a project leadership title. It is not proof of incorporation, directorship, or share ownership.',
   },
   {
     title: 'Our Mission',
